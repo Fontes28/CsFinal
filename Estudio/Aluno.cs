@@ -250,7 +250,7 @@ namespace Estudio
             }
             catch (Exception ex)
             {
-                Console.WriteLine("PASSOU AQUI AQUI AQUIII");
+            
                 Console.WriteLine(ex.ToString());
             }
 

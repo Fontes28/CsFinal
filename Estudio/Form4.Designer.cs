@@ -48,6 +48,7 @@ namespace Estudio
             this.mkCPF.Name = "mkCPF";
             this.mkCPF.Size = new System.Drawing.Size(100, 20);
             this.mkCPF.TabIndex = 1;
+            this.mkCPF.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.mkCPF_MaskInputRejected);
             this.mkCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.mkCPF_KeyPress);
             // 
             // Form4

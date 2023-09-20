@@ -37,6 +37,11 @@ namespace Estudio
                 }
             }
         }
+
+        private void mkCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
     }
 
 }
