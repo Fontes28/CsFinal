@@ -4,25 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Estudio
 {
     class Modalidade
     {
-        private String Descricao;
+        private string descricao;
         private float preco;
         private int qtde_alunos, qtde_aulas;
 
         public Modalidade(string descricao, float preco, int qtde_alunos, int qtde_aulas)
         {
-            Descricao = descricao;
+            this.descricao = descricao;
             this.preco = preco;
             this.qtde_alunos = qtde_alunos;
             this.qtde_aulas = qtde_aulas;
         }
         public Modalidade(string descricao)
         {
-            Descricao = descricao;
+            this.descricao = descricao;
            
         }
         public Modalidade()
@@ -30,7 +31,7 @@ namespace Estudio
             
         }
 
-        public string Descricao1 { get => Descricao; set => Descricao = value; }
+        public string Descricao { get => descricao; set => descricao = value; }
         public float Preco { get => preco; set => preco = value; }              
         public int Qtde_aulas { get => qtde_aulas; set => qtde_aulas = value; }
         public int Qtde_alunos { get => qtde_alunos; set => qtde_alunos = value; }
@@ -42,7 +43,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand insere = new MySqlCommand("insert into Estudio_Modalidade(descricaoModalidade, precoModalidade, qtdeAlunos, qtdeAulas) values ('" + Descricao + "'," + preco + "," + qtde_alunos + "," + qtde_aulas+")", DAO_Conexao.con);
+                MySqlCommand insere = new MySqlCommand("insert into Estudio_Modalidade(descricaoModalidade, precoModalidade, qtdeAlunos, qtdeAulas) values ('" + descricao + "'," + preco + "," + qtde_alunos + "," + qtde_aulas+")", DAO_Conexao.con);
                 insere.ExecuteNonQuery();
                 cad = true;
             }
@@ -86,10 +87,11 @@ namespace Estudio
         public bool consultarBoolean()
         {
             bool existe = false;
+
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand consultaBool = new MySqlCommand("SELECT* FROM Estudio_Aluno WHERE descricaoModalidade='" + Descricao + "'", DAO_Conexao.con);
+                MySqlCommand consultaBool = new MySqlCommand("SELECT * FROM Estudio_Modalidade WHERE descricaoModalidade = '" + descricao + "'", DAO_Conexao.con);
                 MySqlDataReader resultado = consultaBool.ExecuteReader();
                 if (resultado.Read())
                 {
@@ -98,7 +100,7 @@ namespace Estudio
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
 
             finally
@@ -140,7 +142,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand update = new MySqlCommand("update Estudio_Aluno set descricaoModalidade='" + Descricao + "', precoModalidade=" + preco + ", qtdeAlunos=" + qtde_alunos + ", qtdeAulas=" + qtde_aulas + " where descricaoModalidade='" + Descricao + "'", DAO_Conexao.con);
+                MySqlCommand update = new MySqlCommand("update Estudio_Modalidade set descricaoModalidade='" + descricao + "', precoModalidade=" + preco + ", qtdeAlunos=" + qtde_alunos + ", qtdeAulas=" + qtde_aulas + " where descricaoModalidade='" + descricao + "'", DAO_Conexao.con);
                 update.ExecuteNonQuery();
                 updated = true;
             }
@@ -161,13 +163,13 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                 MySqlCommand exclui = new MySqlCommand("update Estudio_Modalidade set ativo=1 where descricaoModalidade='" + Descricao1 + "'", DAO_Conexao.con);
+                 MySqlCommand exclui = new MySqlCommand("update Estudio_Modalidade set ativa=1 where descricaoModalidade = '" + Descricao + "'", DAO_Conexao.con);
                 exclui.ExecuteNonQuery();
                 exc = true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                MessageBox.Show(ex.ToString());
             }
             finally
             {

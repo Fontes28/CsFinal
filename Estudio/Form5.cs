@@ -14,8 +14,10 @@ namespace Estudio
     public partial class Form5 : Form
     {
         private bool att;
+        String descricacaoSel;
 
-      
+
+
 
         public Form5(bool att)
         {
@@ -48,9 +50,44 @@ namespace Estudio
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            try
+            if (att)
             {
+                float preco = float.Parse(txtPreco.Text);
+                int alunos = int.Parse(txtAluno.Text);
+                int aulas = int.Parse(txtAulas.Text);
+                Modalidade m = new Modalidade(descricacaoSel, preco, alunos, aulas);
+                if (m.atualizaModalidade())
+                {
+                    MessageBox.Show("Atualizado com Sucesso");
 
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao atualizar");
+                }
+            }
+            else
+            {
+                try
+                {
+                    Modalidade md = new Modalidade();
+                    descricacaoSel = comboBox1.SelectedItem.ToString();
+                    MessageBox.Show(descricacaoSel);
+                    MySqlDataReader r = md.consultarModalidade(descricacaoSel);
+                    while (r.Read())
+                    {
+                        descricacaoSel = r["descricaoModalidade"].ToString();
+                        txtAluno.Text = r["qtdeAlunos"].ToString();
+                        txtAulas.Text = r["qtdeAulas"].ToString();
+                        txtPreco.Text = r["precoModalidade"].ToString();
+
+                    }
+                    DAO_Conexao.con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
             }
         }
         private void btnConsultar_Click(object sender, EventArgs e)
@@ -61,6 +98,35 @@ namespace Estudio
         private void Form5_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (att)
+            {
+
+
+                try
+                {
+                    Modalidade md = new Modalidade();
+                    descricacaoSel = comboBox1.SelectedItem.ToString();
+                    MessageBox.Show(descricacaoSel);
+                    MySqlDataReader r = md.consultarModalidade(descricacaoSel);
+                    while (r.Read())
+                    {
+                        descricacaoSel = r["descricaoModalidade"].ToString();
+                        txtAluno.Text = r["qtdeAlunos"].ToString();
+                        txtAulas.Text = r["qtdeAulas"].ToString();
+                        txtPreco.Text = r["precoModalidade"].ToString();
+
+                    }
+                    DAO_Conexao.con.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+            }
         }
     }
 }

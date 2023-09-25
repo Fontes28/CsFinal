@@ -114,6 +114,7 @@ namespace Estudio
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(365, 21);
             this.comboBox1.TabIndex = 4;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // txtAulas
             // 

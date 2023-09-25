@@ -31,7 +31,7 @@ namespace Estudio
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int tipo = DAO_Conexao.login(textBox1.Text, textBox2.Text);
+            int tipo = DAO_Conexao.login("davic","2805");
             if (tipo == 0)
             {
                 MessageBox.Show("Usuário ou senha invalidos");

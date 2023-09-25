@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace Estudio
         public Form7()
         {
             InitializeComponent();
+            Modalidade modalidade1 = new Modalidade();
+            MySqlDataReader x = modalidade1.ConsultarTodasModalidades();
+            while (x.Read())
+            {
+
+                comboBox1.Items.Add(x["descricaoModalidade"].ToString());
+            }
+            DAO_Conexao.con.Close();
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -22,13 +31,14 @@ namespace Estudio
             try
             {
                 Modalidade m = new Modalidade();
+                m.Descricao = comboBox1.Text;
+
                 if (m.consultarBoolean())
                 {
                     if (m.excluirModalidade())
                     {
                         MessageBox.Show("Modalidade Excluida");
                     }
-
                 }
                 else
                 {
