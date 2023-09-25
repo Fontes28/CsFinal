@@ -13,17 +13,32 @@ namespace Estudio
 {
     public partial class Form5 : Form
     {
-        public Form5()
+        private bool att;
+
+      
+
+        public Form5(bool att)
         {
             InitializeComponent();
             Modalidade modalidade1 = new Modalidade();
-            MySqlDataReader x=modalidade1.ConsultarTodasModalidades();
-            while(x.Read())
+            MySqlDataReader x = modalidade1.ConsultarTodasModalidades();
+            while (x.Read())
             {
 
                 comboBox1.Items.Add(x["descricaoModalidade"].ToString());
             }
             DAO_Conexao.con.Close();
+            this.att = att;
+            if(!att)
+            {
+                btnAtualizar.Text = "Consultar";
+                txtAluno.Enabled = false;
+                txtAulas.Enabled = false;
+                txtPreco.Enabled = false;
+                btnAtualizar.Name = "btnConsultar";
+                
+            }
+
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -32,6 +47,18 @@ namespace Estudio
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+        }
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form5_Load(object sender, EventArgs e)
         {
 
         }

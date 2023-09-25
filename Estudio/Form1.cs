@@ -93,7 +93,31 @@ namespace Estudio
 
         private void atualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form5 frm = new Form5();
+            bool att = true;
+            Form5 frm = new Form5(att);
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            Form6 frm = new Form6();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void excluirToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form7 frm = new Form7();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void consultarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool att = false;
+            Form5 frm = new Form5(att);
             frm.MdiParent = this;
             frm.Show();
         }

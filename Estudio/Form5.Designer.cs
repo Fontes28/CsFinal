@@ -30,15 +30,15 @@ namespace Estudio
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtPreco = new System.Windows.Forms.TextBox();
-            this.txtAluno = new System.Windows.Forms.TextBox();
-            this.txtAulas = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lblDescricao = new System.Windows.Forms.Label();
-            this.lblPreco = new System.Windows.Forms.Label();
-            this.lblAlunos = new System.Windows.Forms.Label();
-            this.lblAula = new System.Windows.Forms.Label();
             this.btnAtualizar = new System.Windows.Forms.Button();
+            this.lblAula = new System.Windows.Forms.Label();
+            this.lblAlunos = new System.Windows.Forms.Label();
+            this.lblPreco = new System.Windows.Forms.Label();
+            this.lblDescricao = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtAulas = new System.Windows.Forms.TextBox();
+            this.txtAluno = new System.Windows.Forms.TextBox();
+            this.txtPreco = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,61 +60,15 @@ namespace Estudio
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modalidades";
             // 
-            // txtPreco
+            // btnAtualizar
             // 
-            this.txtPreco.Location = new System.Drawing.Point(112, 87);
-            this.txtPreco.Name = "txtPreco";
-            this.txtPreco.Size = new System.Drawing.Size(367, 20);
-            this.txtPreco.TabIndex = 1;
-            // 
-            // txtAluno
-            // 
-            this.txtAluno.Location = new System.Drawing.Point(112, 127);
-            this.txtAluno.Name = "txtAluno";
-            this.txtAluno.Size = new System.Drawing.Size(367, 20);
-            this.txtAluno.TabIndex = 2;
-            // 
-            // txtAulas
-            // 
-            this.txtAulas.Location = new System.Drawing.Point(112, 168);
-            this.txtAulas.Name = "txtAulas";
-            this.txtAulas.Size = new System.Drawing.Size(367, 20);
-            this.txtAulas.TabIndex = 3;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(114, 47);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(365, 21);
-            this.comboBox1.TabIndex = 4;
-            // 
-            // lblDescricao
-            // 
-            this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Location = new System.Drawing.Point(31, 50);
-            this.lblDescricao.Name = "lblDescricao";
-            this.lblDescricao.Size = new System.Drawing.Size(58, 13);
-            this.lblDescricao.TabIndex = 5;
-            this.lblDescricao.Text = "Descrição:";
-            // 
-            // lblPreco
-            // 
-            this.lblPreco.AutoSize = true;
-            this.lblPreco.Location = new System.Drawing.Point(31, 94);
-            this.lblPreco.Name = "lblPreco";
-            this.lblPreco.Size = new System.Drawing.Size(38, 13);
-            this.lblPreco.TabIndex = 6;
-            this.lblPreco.Text = "Preço:";
-            // 
-            // lblAlunos
-            // 
-            this.lblAlunos.AutoSize = true;
-            this.lblAlunos.Location = new System.Drawing.Point(31, 130);
-            this.lblAlunos.Name = "lblAlunos";
-            this.lblAlunos.Size = new System.Drawing.Size(68, 13);
-            this.lblAlunos.TabIndex = 7;
-            this.lblAlunos.Text = "Qtde Alunos:";
+            this.btnAtualizar.Location = new System.Drawing.Point(34, 203);
+            this.btnAtualizar.Name = "btnAtualizar";
+            this.btnAtualizar.Size = new System.Drawing.Size(445, 36);
+            this.btnAtualizar.TabIndex = 9;
+            this.btnAtualizar.Text = "Atualizar";
+            this.btnAtualizar.UseVisualStyleBackColor = true;
+            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
             // lblAula
             // 
@@ -126,15 +80,61 @@ namespace Estudio
             this.lblAula.Text = "Qtde Aulas:";
             this.lblAula.Click += new System.EventHandler(this.label4_Click);
             // 
-            // btnAtualizar
+            // lblAlunos
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(34, 203);
-            this.btnAtualizar.Name = "btnAtualizar";
-            this.btnAtualizar.Size = new System.Drawing.Size(445, 36);
-            this.btnAtualizar.TabIndex = 9;
-            this.btnAtualizar.Text = "Atualizar";
-            this.btnAtualizar.UseVisualStyleBackColor = true;
-            this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
+            this.lblAlunos.AutoSize = true;
+            this.lblAlunos.Location = new System.Drawing.Point(31, 130);
+            this.lblAlunos.Name = "lblAlunos";
+            this.lblAlunos.Size = new System.Drawing.Size(68, 13);
+            this.lblAlunos.TabIndex = 7;
+            this.lblAlunos.Text = "Qtde Alunos:";
+            // 
+            // lblPreco
+            // 
+            this.lblPreco.AutoSize = true;
+            this.lblPreco.Location = new System.Drawing.Point(31, 94);
+            this.lblPreco.Name = "lblPreco";
+            this.lblPreco.Size = new System.Drawing.Size(38, 13);
+            this.lblPreco.TabIndex = 6;
+            this.lblPreco.Text = "Preço:";
+            // 
+            // lblDescricao
+            // 
+            this.lblDescricao.AutoSize = true;
+            this.lblDescricao.Location = new System.Drawing.Point(31, 50);
+            this.lblDescricao.Name = "lblDescricao";
+            this.lblDescricao.Size = new System.Drawing.Size(58, 13);
+            this.lblDescricao.TabIndex = 5;
+            this.lblDescricao.Text = "Descrição:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(114, 47);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(365, 21);
+            this.comboBox1.TabIndex = 4;
+            // 
+            // txtAulas
+            // 
+            this.txtAulas.Location = new System.Drawing.Point(112, 168);
+            this.txtAulas.Name = "txtAulas";
+            this.txtAulas.Size = new System.Drawing.Size(367, 20);
+            this.txtAulas.TabIndex = 3;
+            // 
+            // txtAluno
+            // 
+            this.txtAluno.Location = new System.Drawing.Point(112, 127);
+            this.txtAluno.Name = "txtAluno";
+            this.txtAluno.Size = new System.Drawing.Size(367, 20);
+            this.txtAluno.TabIndex = 2;
+            // 
+            // txtPreco
+            // 
+            this.txtPreco.Location = new System.Drawing.Point(112, 87);
+            this.txtPreco.Name = "txtPreco";
+            this.txtPreco.Size = new System.Drawing.Size(367, 20);
+            this.txtPreco.TabIndex = 1;
             // 
             // Form5
             // 
@@ -144,6 +144,7 @@ namespace Estudio
             this.Controls.Add(this.groupBox1);
             this.Name = "Form5";
             this.Text = "Atualizar";
+            this.Load += new System.EventHandler(this.Form5_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);

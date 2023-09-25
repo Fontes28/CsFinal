@@ -12,10 +12,14 @@ namespace Estudio
 {
     public partial class Form6 : Form
     {
+       
+
         public Form6()
         {
             InitializeComponent();
         }
+
+        
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
