@@ -39,11 +39,13 @@ namespace Estudio
             this.txtAulas = new System.Windows.Forms.TextBox();
             this.txtAluno = new System.Windows.Forms.TextBox();
             this.txtPreco = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkBox1);
             this.groupBox1.Controls.Add(this.btnAtualizar);
             this.groupBox1.Controls.Add(this.lblAula);
             this.groupBox1.Controls.Add(this.lblAlunos);
@@ -55,14 +57,14 @@ namespace Estudio
             this.groupBox1.Controls.Add(this.txtPreco);
             this.groupBox1.Location = new System.Drawing.Point(72, 41);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(549, 262);
+            this.groupBox1.Size = new System.Drawing.Size(542, 328);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Modalidades";
             // 
             // btnAtualizar
             // 
-            this.btnAtualizar.Location = new System.Drawing.Point(34, 203);
+            this.btnAtualizar.Location = new System.Drawing.Point(34, 246);
             this.btnAtualizar.Name = "btnAtualizar";
             this.btnAtualizar.Size = new System.Drawing.Size(445, 36);
             this.btnAtualizar.TabIndex = 9;
@@ -137,6 +139,16 @@ namespace Estudio
             this.txtPreco.Size = new System.Drawing.Size(367, 20);
             this.txtPreco.TabIndex = 1;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(34, 214);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(68, 17);
+            this.checkBox1.TabIndex = 10;
+            this.checkBox1.Text = "Excluída";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // Form5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -164,5 +176,6 @@ namespace Estudio
         private System.Windows.Forms.TextBox txtAluno;
         private System.Windows.Forms.TextBox txtPreco;
         private System.Windows.Forms.Button btnAtualizar;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

@@ -33,11 +33,12 @@ namespace Estudio
             this.att = att;
             if(!att)
             {
-                btnAtualizar.Text = "Consultar";
+                btnAtualizar.Visible=false;
                 txtAluno.Enabled = false;
                 txtAulas.Enabled = false;
                 txtPreco.Enabled = false;
-                btnAtualizar.Name = "btnConsultar";
+                checkBox1.Enabled = false;
+                //btnAtualizar.Name = "btnConsultar";
                 
             }
 
@@ -55,7 +56,16 @@ namespace Estudio
                 float preco = float.Parse(txtPreco.Text);
                 int alunos = int.Parse(txtAluno.Text);
                 int aulas = int.Parse(txtAulas.Text);
-                Modalidade m = new Modalidade(descricacaoSel, preco, alunos, aulas);
+                int del;
+                if(checkBox1.Checked)
+                {
+                    del = 1;
+                }
+                else
+                {
+                    del = 0;
+                }
+                Modalidade m = new Modalidade(descricacaoSel, preco, alunos, aulas,del);
                 if (m.atualizaModalidade())
                 {
                     MessageBox.Show("Atualizado com Sucesso");
@@ -102,15 +112,14 @@ namespace Estudio
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (att)
-            {
+            
 
 
                 try
                 {
                     Modalidade md = new Modalidade();
                     descricacaoSel = comboBox1.SelectedItem.ToString();
-                    MessageBox.Show(descricacaoSel);
+                    //MessageBox.Show(descricacaoSel);
                     MySqlDataReader r = md.consultarModalidade(descricacaoSel);
                     while (r.Read())
                     {
@@ -118,6 +127,16 @@ namespace Estudio
                         txtAluno.Text = r["qtdeAlunos"].ToString();
                         txtAulas.Text = r["qtdeAulas"].ToString();
                         txtPreco.Text = r["precoModalidade"].ToString();
+                    bool a;
+                        if(r["ativa"].ToString().Equals("1"))
+                        {
+                        checkBox1.Checked = true;
+                        }
+                        else
+                        {
+                        checkBox1.Checked = false;
+                        }
+                        
 
                     }
                     DAO_Conexao.con.Close();
@@ -126,7 +145,7 @@ namespace Estudio
                 {
                     MessageBox.Show(ex.ToString());
                 }
-            }
+            
         }
     }
 }

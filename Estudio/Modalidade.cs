@@ -13,13 +13,17 @@ namespace Estudio
         private string descricao;
         private float preco;
         private int qtde_alunos, qtde_aulas;
+        private int del;
+        private int qtdeAluno;
+        private int qtdeAula;
 
-        public Modalidade(string descricao, float preco, int qtde_alunos, int qtde_aulas)
+        public Modalidade(string descricao, float preco, int qtde_alunos, int qtde_aulas,int del)
         {
             this.descricao = descricao;
             this.preco = preco;
             this.qtde_alunos = qtde_alunos;
             this.qtde_aulas = qtde_aulas;
+            this.del = del;
         }
         public Modalidade(string descricao)
         {
@@ -29,6 +33,14 @@ namespace Estudio
         public Modalidade()
         {
             
+        }
+
+        public Modalidade(string descricao, float preco, int qtdeAluno, int qtdeAula)
+        {
+            this.descricao = descricao;
+            this.preco = preco;
+            this.qtdeAluno = qtdeAluno;
+            this.qtdeAula = qtdeAula;
         }
 
         public string Descricao { get => descricao; set => descricao = value; }
@@ -142,7 +154,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand update = new MySqlCommand("update Estudio_Modalidade set descricaoModalidade='" + descricao + "', precoModalidade=" + preco + ", qtdeAlunos=" + qtde_alunos + ", qtdeAulas=" + qtde_aulas + " where descricaoModalidade='" + descricao + "'", DAO_Conexao.con);
+                MySqlCommand update = new MySqlCommand("update Estudio_Modalidade set descricaoModalidade='" + descricao + "', precoModalidade=" + preco + ", qtdeAlunos=" + qtde_alunos + ", qtdeAulas=" + qtde_aulas + ", ativa="+ del +" where descricaoModalidade='" + descricao + "'", DAO_Conexao.con);
                 update.ExecuteNonQuery();
                 updated = true;
             }
