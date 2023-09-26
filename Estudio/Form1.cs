@@ -12,9 +12,10 @@ using System.Windows.Forms;
 namespace Estudio
 {
     public partial class Form1 : Form
-    {
+    {   bool att;
         public Form1()
         {
+            
             InitializeComponent();
             menuStrip1.Enabled = false;
 
@@ -53,7 +54,8 @@ namespace Estudio
 
         private void cadastrarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form3 frm = new Form3();
+            att = false;
+            Form3 frm = new Form3(att);
             frm.MdiParent = this;
             frm.Show();
         }
@@ -62,7 +64,7 @@ namespace Estudio
         {
            
             Form2 form2 = new Form2();
-                        form2.MdiParent = this;
+            form2.MdiParent = this;
             form2.Show();
             groupBox1.Visible = false;
         }
@@ -86,7 +88,8 @@ namespace Estudio
 
         private void atualizarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form3 frm = new Form3();
+            att = true;
+            Form3 frm = new Form3(att);
             frm.MdiParent = this;
             frm.Show();
         }

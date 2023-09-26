@@ -51,53 +51,60 @@ namespace Estudio
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            if (att)
+            try
             {
-                float preco = float.Parse(txtPreco.Text);
-                int alunos = int.Parse(txtAluno.Text);
-                int aulas = int.Parse(txtAulas.Text);
-                int del;
-                if(checkBox1.Checked)
+                if (att)
                 {
-                    del = 1;
-                }
-                else
-                {
-                    del = 0;
-                }
-                Modalidade m = new Modalidade(descricacaoSel, preco, alunos, aulas,del);
-                if (m.atualizaModalidade())
-                {
-                    MessageBox.Show("Atualizado com Sucesso");
-
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao atualizar");
-                }
-            }
-            else
-            {
-                try
-                {
-                    Modalidade md = new Modalidade();
-                    descricacaoSel = comboBox1.SelectedItem.ToString();
-                    MessageBox.Show(descricacaoSel);
-                    MySqlDataReader r = md.consultarModalidade(descricacaoSel);
-                    while (r.Read())
+                    float preco = float.Parse(txtPreco.Text);
+                    int alunos = int.Parse(txtAluno.Text);
+                    int aulas = int.Parse(txtAulas.Text);
+                    int del;
+                    if (checkBox1.Checked)
                     {
-                        descricacaoSel = r["descricaoModalidade"].ToString();
-                        txtAluno.Text = r["qtdeAlunos"].ToString();
-                        txtAulas.Text = r["qtdeAulas"].ToString();
-                        txtPreco.Text = r["precoModalidade"].ToString();
+                        del = 1;
+                    }
+                    else
+                    {
+                        del = 0;
+                    }
+                    Modalidade m = new Modalidade(descricacaoSel, preco, alunos, aulas, del);
+                    if (m.atualizaModalidade())
+                    {
+                        MessageBox.Show("Atualizado com Sucesso");
 
                     }
-                    DAO_Conexao.con.Close();
+                    else
+                    {
+                        MessageBox.Show("Erro ao atualizar");
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show(ex.ToString());
+                    try
+                    {
+                        Modalidade md = new Modalidade();
+                        descricacaoSel = comboBox1.SelectedItem.ToString();
+                        MessageBox.Show(descricacaoSel);
+                        MySqlDataReader r = md.consultarModalidade(descricacaoSel);
+                        while (r.Read())
+                        {
+                            descricacaoSel = r["descricaoModalidade"].ToString();
+                            txtAluno.Text = r["qtdeAlunos"].ToString();
+                            txtAulas.Text = r["qtdeAulas"].ToString();
+                            txtPreco.Text = r["precoModalidade"].ToString();
+
+                        }
+                        DAO_Conexao.con.Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                    }
                 }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Os campos não podem estar em Branco");
             }
         }
         private void btnConsultar_Click(object sender, EventArgs e)

@@ -13,9 +13,20 @@ namespace Estudio
 {
     public partial class Form3 : Form
     {
-        public Form3()
+        public Form3(bool att)
         {
             InitializeComponent();
+            if(att)
+            {
+                button2.Visible = false;
+
+            }
+            else
+            {
+                button3.Visible = false;
+                checkBox1.Checked = false;
+                checkBox1.Visible = false;
+            }
         }
 
         private void label3_Click(object sender, EventArgs e)
