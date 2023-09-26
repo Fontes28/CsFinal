@@ -51,6 +51,14 @@ namespace Estudio
                             textBox7.Text = r["estadoAluno"].ToString();
                             maskedTextBox3.Text = r["telefoneAluno"].ToString();
                             textBox8.Text = r["emailAluno"].ToString();
+                            if (r["ativo"].ToString().Equals("1"))
+                            {
+                                checkBox1.Checked = true;
+                            }
+                            else
+                            {
+                                checkBox1.Checked = false;
+                            }
 
 
 

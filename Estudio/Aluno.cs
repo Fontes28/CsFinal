@@ -21,7 +21,7 @@ namespace Estudio
         private String Telefone;
         private String Email;
         private byte[] Foto;
-        private bool Ativo;
+        private int Ativo;
 
         public Aluno(String CPF, String nome, String rua,
             String numero, String bairro, String complemento,
@@ -57,6 +57,25 @@ namespace Estudio
             setEstado(estado);
             setTelefone(telefone);
             setEmail(email);
+
+        }
+        public Aluno(String CPF, String nome, String rua,
+           String numero, String bairro, String complemento,
+           String CEP, String cidade, String estado,
+           String telefone, String email,int ativo)
+        {
+            setCPF(CPF);
+            setNome(nome);
+            setRua(rua);
+            setNumero(numero);
+            setBairro(bairro);
+            setComplemento(complemento);
+            setCEP(CEP);
+            setCidade(cidade);
+            setEstado(estado);
+            setTelefone(telefone);
+            setEmail(email);
+            setAtivo(ativo);
 
         }
         public String getCPF()
@@ -183,6 +202,14 @@ namespace Estudio
         {
             Foto = foto;
         }
+        public void setAtivo(int ativo)
+        {
+            Ativo = ativo;
+        }
+        public int getAtivo()
+        {
+            return Ativo;
+        }
 
         public bool cadastrarAluno()
         {
@@ -290,7 +317,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand update = new MySqlCommand("update Estudio_Aluno set nomeAluno='" + Nome + "', ruaAluno='" + Rua + "', numeroAluno='" + Numero + "', bairroAluno='" + Bairro + "', complementoAluno='" + Complemento + "', CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno='" + Telefone + "', emailAluno='" + Email + "', fotoAluno='" + Foto + "' where CPFAluno='" + CPF + "'", DAO_Conexao.con);
+                MySqlCommand update = new MySqlCommand("update Estudio_Aluno set nomeAluno='" + Nome + "', ruaAluno='" + Rua + "', numeroAluno='" + Numero + "', bairroAluno='" + Bairro + "', complementoAluno='" + Complemento + "', CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno='" + Telefone + "', emailAluno='" + Email + "', fotoAluno='" + Foto + "',ativo="+ Ativo +" where CPFAluno='" + CPF + "'", DAO_Conexao.con);
                 update.ExecuteNonQuery();
                 up = true;
             }
