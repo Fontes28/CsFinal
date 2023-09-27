@@ -23,23 +23,30 @@ namespace Estudio
 
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            String descricao = txtDescricao.Text;
-            float preco = float.Parse(txtPreco.Text);
-            int qtdeAluno = int.Parse(txtAluno.Text);
-            int qtdeAula = int.Parse(txtAula.Text);
-
-            Modalidade m = new Modalidade(descricao, preco, qtdeAluno, qtdeAula);
-
-            if (m.cadastrarModalidade())
-
+            try
             {
-                MessageBox.Show("Cadastro realizado");
+                String descricao = txtDescricao.Text;
+                float preco = float.Parse(txtPreco.Text);
+                int qtdeAluno = int.Parse(txtAluno.Text);
+                int qtdeAula = int.Parse(txtAula.Text);
 
+                Modalidade m = new Modalidade(descricao, preco, qtdeAluno, qtdeAula);
+
+                if (m.cadastrarModalidade())
+
+                {
+                    MessageBox.Show("Cadastro realizado");
+
+                }
+                else
+                {
+                    MessageBox.Show("Erro no cadastro");
+
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MessageBox.Show("Erro no cadastro");
-
+                MessageBox.Show("Não pode haver campos em branco");
             }
         }
     }

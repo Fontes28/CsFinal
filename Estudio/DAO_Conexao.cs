@@ -5,7 +5,7 @@ namespace Estudio
 {
     class DAO_Conexao
     {
-        //atributos
+        
         public static MySqlConnection con;
 
         public static Boolean getConexao(String local, String banco, String user, String senha)
