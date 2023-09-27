@@ -46,6 +46,7 @@ namespace Estudio
                     MessageBox.Show("Modalidade inexistente");
                 }
                 m.excluirModalidade();
+                comboBox1.SelectedIndex = -1;
             }
             catch(Exception ex)
             {

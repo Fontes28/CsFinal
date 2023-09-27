@@ -35,10 +35,16 @@ namespace Estudio
                 {
                     MessageBox.Show("Aluno inexistente");
                 }
+                mkCPF.Text = "";
             }
         }
 
         private void mkCPF_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void Form4_Load(object sender, EventArgs e)
         {
 
         }

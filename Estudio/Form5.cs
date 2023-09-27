@@ -113,6 +113,11 @@ namespace Estudio
                         MessageBox.Show(ex.ToString());
                     }
                 }
+                txtAluno.Text = "";
+                txtAulas.Text = "";
+                txtPreco.Text = "";
+                
+                checkBox1.Checked = false;
             }
             catch(Exception ex)
             {

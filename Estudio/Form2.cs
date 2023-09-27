@@ -34,6 +34,10 @@ namespace Estudio
             }
             else
                 MessageBox.Show("Erro de cadastro");
+
+            textBox1.Text = "";
+            textBox2.Text = "";
+            comboBox1.SelectedIndex = -1;
         }
     }
 }

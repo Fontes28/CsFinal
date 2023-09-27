@@ -43,6 +43,10 @@ namespace Estudio
                     MessageBox.Show("Erro no cadastro");
 
                 }
+                txtPreco.Text = "";
+                txtDescricao.Text = "";
+                txtAula.Text = "";
+                txtAluno.Text = "";
             }
             catch(Exception ex)
             {

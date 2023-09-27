@@ -117,7 +117,18 @@ namespace Estudio
                     MessageBox.Show("Erro no cadastro");
 
                 }
-            
+
+            maskedTextBox1.Text = "";
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            maskedTextBox2.Text = "";
+            maskedTextBox3.Text = "";
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -131,7 +142,18 @@ namespace Estudio
             {
                 MessageBox.Show("Erro ao Atualizar");
             }
-           
+
+            maskedTextBox1.Text = "";
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox4.Text = "";
+            textBox5.Text = "";
+            textBox6.Text = "";
+            textBox7.Text = "";
+            textBox8.Text = "";
+            maskedTextBox2.Text = "";
+            maskedTextBox3.Text = "";
         }
     }
 }
