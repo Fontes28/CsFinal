@@ -50,8 +50,13 @@ namespace Estudio
             }
             catch(Exception ex)
             {
-                MessageBox.Show("Erro ao excluir");
+                MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
         }
     }
 }

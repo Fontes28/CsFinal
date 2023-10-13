@@ -124,5 +124,19 @@ namespace Estudio
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void cadastrarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            cadastrar_Turma frm = new cadastrar_Turma();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void excluirToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormExcluir frm = new FormExcluir();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }
