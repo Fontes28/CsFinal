@@ -18,6 +18,7 @@ namespace Estudio
             InitializeComponent();
             try
             {
+                int cont = 0;
                 Modalidade m = new Modalidade();
                 Turma t = new Turma();
                 MySqlDataReader r = m.ConsultarTodasModalidadesAtivas();
@@ -31,6 +32,7 @@ namespace Estudio
                 {
                     
                 }
+
                 DAO_Conexao.con.Close();
             }
             catch(Exception ex)
