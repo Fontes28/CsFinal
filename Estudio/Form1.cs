@@ -138,5 +138,12 @@ namespace Estudio
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void consultarAtualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ConsultarTurma frm = new ConsultarTurma();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }
