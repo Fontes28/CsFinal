@@ -21,7 +21,7 @@ namespace Estudio
             InitializeComponent();
                 WindowState = FormWindowState.Maximized;
                 Modalidade con_Mod = new Modalidade();
-                 MySqlDataReader r = con_Mod.ConsultarTodasModalidades();
+                 MySqlDataReader r = con_Mod.ConsultarTodasModalidadesAtivas();
                 
                  while(r.Read())
                     {
@@ -93,7 +93,7 @@ namespace Estudio
             }
         }
         
-        /*
+        
         private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
 
@@ -189,7 +189,7 @@ namespace Estudio
             }
 
         }
-        */
+        
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
