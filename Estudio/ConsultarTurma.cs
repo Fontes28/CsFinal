@@ -16,23 +16,19 @@ namespace Estudio
         public ConsultarTurma()
         {
             InitializeComponent();
+            txtDiaSemana.Enabled = false;
+            txtModalidade.Enabled = false;
+            txtProfessor.Enabled = false;
+            txtQntdAlunos.Enabled = false;
+            mkdHora.Enabled = false;
             try
             {
-                int cont = 0;
                 Modalidade m = new Modalidade();
-                Turma t = new Turma();
                 MySqlDataReader r = m.ConsultarTodasModalidadesAtivas();
                 while(r.Read())
                 {
-                    dataGridView1.Columns.Add(r["idEstudio_Modalidade"].ToString(), r["descricaoModalidade"].ToString());
+                    comboBox1.Items.Add(r["descricaoModalidade"].ToString());
                 }
-                DAO_Conexao.con.Close();
-                MySqlDataReader rTurma = t.consultarTodasTurmas();
-                while (rTurma.Read())
-                {
-                    
-                }
-
                 DAO_Conexao.con.Close();
             }
             catch(Exception ex)
@@ -42,6 +38,21 @@ namespace Estudio
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //listView1.Columns.Add
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAtualizar_Click(object sender, EventArgs e)
         {
 
         }
