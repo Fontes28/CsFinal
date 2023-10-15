@@ -30,20 +30,20 @@ namespace Estudio
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtQntdAlunos = new System.Windows.Forms.TextBox();
+            this.mkdHora = new System.Windows.Forms.MaskedTextBox();
+            this.txtDiaSemana = new System.Windows.Forms.TextBox();
+            this.txtProfessor = new System.Windows.Forms.TextBox();
+            this.txtModalidade = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnAtualizar = new System.Windows.Forms.Button();
-            this.txtModalidade = new System.Windows.Forms.TextBox();
-            this.txtProfessor = new System.Windows.Forms.TextBox();
-            this.txtDiaSemana = new System.Windows.Forms.TextBox();
-            this.mkdHora = new System.Windows.Forms.MaskedTextBox();
-            this.txtQntdAlunos = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,14 +66,86 @@ namespace Estudio
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // listView1
+            // label6
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(324, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(464, 228);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 239);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "label6";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 186);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "label5";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 7;
+            this.label4.Text = "label4";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 76);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "label3";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 32);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "label2";
+            // 
+            // txtQntdAlunos
+            // 
+            this.txtQntdAlunos.Location = new System.Drawing.Point(95, 236);
+            this.txtQntdAlunos.Name = "txtQntdAlunos";
+            this.txtQntdAlunos.Size = new System.Drawing.Size(167, 20);
+            this.txtQntdAlunos.TabIndex = 4;
+            // 
+            // mkdHora
+            // 
+            this.mkdHora.Location = new System.Drawing.Point(95, 183);
+            this.mkdHora.Name = "mkdHora";
+            this.mkdHora.Size = new System.Drawing.Size(167, 20);
+            this.mkdHora.TabIndex = 3;
+            // 
+            // txtDiaSemana
+            // 
+            this.txtDiaSemana.Location = new System.Drawing.Point(95, 131);
+            this.txtDiaSemana.Name = "txtDiaSemana";
+            this.txtDiaSemana.Size = new System.Drawing.Size(167, 20);
+            this.txtDiaSemana.TabIndex = 2;
+            this.txtDiaSemana.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // txtProfessor
+            // 
+            this.txtProfessor.Location = new System.Drawing.Point(95, 76);
+            this.txtProfessor.Name = "txtProfessor";
+            this.txtProfessor.Size = new System.Drawing.Size(167, 20);
+            this.txtProfessor.TabIndex = 1;
+            // 
+            // txtModalidade
+            // 
+            this.txtModalidade.Location = new System.Drawing.Point(95, 29);
+            this.txtModalidade.Name = "txtModalidade";
+            this.txtModalidade.Size = new System.Drawing.Size(167, 20);
+            this.txtModalidade.TabIndex = 0;
             // 
             // comboBox1
             // 
@@ -103,96 +175,24 @@ namespace Estudio
             this.btnAtualizar.UseVisualStyleBackColor = true;
             this.btnAtualizar.Click += new System.EventHandler(this.btnAtualizar_Click);
             // 
-            // txtModalidade
+            // listBox1
             // 
-            this.txtModalidade.Location = new System.Drawing.Point(95, 29);
-            this.txtModalidade.Name = "txtModalidade";
-            this.txtModalidade.Size = new System.Drawing.Size(167, 20);
-            this.txtModalidade.TabIndex = 0;
-            // 
-            // txtProfessor
-            // 
-            this.txtProfessor.Location = new System.Drawing.Point(95, 76);
-            this.txtProfessor.Name = "txtProfessor";
-            this.txtProfessor.Size = new System.Drawing.Size(167, 20);
-            this.txtProfessor.TabIndex = 1;
-            // 
-            // txtDiaSemana
-            // 
-            this.txtDiaSemana.Location = new System.Drawing.Point(95, 131);
-            this.txtDiaSemana.Name = "txtDiaSemana";
-            this.txtDiaSemana.Size = new System.Drawing.Size(167, 20);
-            this.txtDiaSemana.TabIndex = 2;
-            this.txtDiaSemana.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
-            // 
-            // mkdHora
-            // 
-            this.mkdHora.Location = new System.Drawing.Point(95, 183);
-            this.mkdHora.Name = "mkdHora";
-            this.mkdHora.Size = new System.Drawing.Size(167, 20);
-            this.mkdHora.TabIndex = 3;
-            // 
-            // txtQntdAlunos
-            // 
-            this.txtQntdAlunos.Location = new System.Drawing.Point(95, 236);
-            this.txtQntdAlunos.Name = "txtQntdAlunos";
-            this.txtQntdAlunos.Size = new System.Drawing.Size(167, 20);
-            this.txtQntdAlunos.TabIndex = 4;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 32);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 76);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "label3";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 131);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "label4";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 186);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "label5";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 239);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "label6";
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(312, 20);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(440, 225);
+            this.listBox1.TabIndex = 5;
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // ConsultarTurma
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.btnAtualizar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.listView1);
             this.Controls.Add(this.groupBox1);
             this.Name = "ConsultarTurma";
             this.Text = "ConsultarTurma";
@@ -206,7 +206,6 @@ namespace Estudio
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnAtualizar;
@@ -220,5 +219,6 @@ namespace Estudio
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
