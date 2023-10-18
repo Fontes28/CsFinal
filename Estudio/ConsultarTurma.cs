@@ -23,6 +23,7 @@ namespace Estudio
         int idTurma;
         string horario;
         string horaSelected;
+        bool deletado;
         public ConsultarTurma()
         {
             InitializeComponent();
@@ -32,6 +33,8 @@ namespace Estudio
             txtQntdAlunos.Enabled = false;
             mkdHora.Enabled = false;
             btnAtualizar.Visible = false;
+            checkBox1.Visible = false;
+            checkBox1.Enabled = false;
             
             try
             {
@@ -102,6 +105,13 @@ namespace Estudio
         {
             try
             {
+                int ativo;
+                if (checkBox1.Checked)
+                    ativo = 1;
+                else
+                {
+                    ativo = 0;
+                }
                 int idTurmaAtt=-1;
                 int id=-1;
                 Modalidade modalidade = new Modalidade();
@@ -111,9 +121,9 @@ namespace Estudio
                     id = int.Parse(dataModalidade["idEstudio_Modalidade"].ToString());
                 }
                 DAO_Conexao.con.Close();
-                MessageBox.Show(id.ToString());
+                
                 idTurmaAtt = obterIdTurma();
-                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text), idTurmaAtt);
+                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text), idTurmaAtt,ativo);
                 if(turma.atualizar())
                 {
                     MessageBox.Show("Atualizado com sucesso");
@@ -138,6 +148,8 @@ namespace Estudio
             txtQntdAlunos.Enabled = true;
             mkdHora.Enabled = true;
             btnAtualizar.Visible = true;
+            checkBox1.Visible = true;
+            checkBox1.Enabled = true;
         }
         private void dadosTela()
         {
@@ -170,6 +182,14 @@ namespace Estudio
                 txtProfessor.Text = rDia["professorTurma"].ToString();
                 txtQntdAlunos.Text = rDia["qtde_alunosMatriculados"].ToString();
                 mkdHora.Text = rDia["horaTurma"].ToString();
+                if(int.Parse(rDia["ativo"].ToString())==1)
+                {
+                    checkBox1.Checked = true;
+                }
+                else if(int.Parse(rDia["ativo"].ToString()) == 0)
+                {
+                    checkBox1.Checked = false;
+                }
             }
             DAO_Conexao.con.Close();
         }
@@ -209,6 +229,8 @@ namespace Estudio
             txtQntdAlunos.Enabled = false;
             mkdHora.Enabled = false;
             btnAtualizar.Visible = false;
+            checkBox1.Visible = true;
+            checkBox1.Enabled = false;
         }
 
        

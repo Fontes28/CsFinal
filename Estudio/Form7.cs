@@ -13,7 +13,7 @@ namespace Estudio
 {
     public partial class Form7 : Form
     {
-
+        int id;
         public Form7()
         {
             InitializeComponent();
@@ -46,7 +46,21 @@ namespace Estudio
                     MessageBox.Show("Modalidade inexistente");
                 }
                 m.excluirModalidade();
-                comboBox1.SelectedIndex = -1;
+                
+
+                
+                MySqlDataReader dataReader = m.consultarModalidade(comboBox1.SelectedItem.ToString());
+                while(dataReader.Read())
+                {
+                    id = int.Parse(dataReader["idEstudio_Modalidade"].ToString());
+                   
+                }
+                DAO_Conexao.con.Close();
+                Turma turma = new Turma(id);
+                if(turma.excluirViaModalidade())
+                {
+                    MessageBox.Show("Turmas Excluidas");
+                }
             }
             catch(Exception ex)
             {

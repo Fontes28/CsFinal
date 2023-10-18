@@ -44,7 +44,7 @@ namespace Estudio
             this.modalidade = modalidade;
             this.Qtde_Alunos = qtde_Alunos;
         }
-        public Turma(string professor, string dia_semana, string hora, int modalidade, int qtde_Alunos,int id)
+        public Turma(string professor, string dia_semana, string hora, int modalidade, int qtde_Alunos,int id,int del)
         {
             this.professor = professor;
             this.dia_semana = dia_semana;
@@ -52,6 +52,17 @@ namespace Estudio
             this.modalidade = modalidade;
             this.Qtde_Alunos = qtde_Alunos;
             this.Id = id;
+            this.del = del;
+        }
+        public Turma(string professor, string dia_semana, string hora, int modalidade, int qtde_Alunos, int id)
+        {
+            this.professor = professor;
+            this.dia_semana = dia_semana;
+            this.hora = hora;
+            this.modalidade = modalidade;
+            this.Qtde_Alunos = qtde_Alunos;
+            this.Id = id;
+            
         }
         public Turma(int id, int aux)
         {
@@ -125,7 +136,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand update = new MySqlCommand("update Estudio_Turma set idModalidade=" + modalidade + ", professorTurma='" + professor + "', horaTurma='" + hora + "', qtde_alunosMatriculados=" + Qtde_Alunos + " where idEstudio_Turma=" + Id + "", DAO_Conexao.con);
+                MySqlCommand update = new MySqlCommand("update Estudio_Turma set idModalidade=" + modalidade + ", professorTurma='" + professor + "', horaTurma='" + hora + "', qtde_alunosMatriculados=" + Qtde_Alunos + ",ativo='"+del+"' where idEstudio_Turma=" + Id + "", DAO_Conexao.con);
                 update.ExecuteNonQuery();
                 updated = true;
             }
@@ -174,6 +185,26 @@ namespace Estudio
             {
                 DAO_Conexao.con.Open();
                 MySqlCommand exclui = new MySqlCommand("update Estudio_Turma set ativo=1 where idEstudio_Turma = '" + Id + "'", DAO_Conexao.con);
+                exclui.ExecuteNonQuery();
+                exc = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                DAO_Conexao.con.Close();
+            }
+            return exc;
+        }
+        public bool excluirViaModalidade()
+        {
+            bool exc = false;
+            try
+            {
+                DAO_Conexao.con.Open();
+                MySqlCommand exclui = new MySqlCommand("update Estudio_Turma set ativo=1 where idModalidade = '" + modalidade + "'", DAO_Conexao.con);
                 exclui.ExecuteNonQuery();
                 exc = true;
             }

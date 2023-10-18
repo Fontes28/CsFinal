@@ -59,7 +59,7 @@ namespace Estudio
                     id = int.Parse(dataModalidade["idEstudio_Modalidade"].ToString());
                 }
                 DAO_Conexao.con.Close();
-                MessageBox.Show(id.ToString());
+                
                 idTurmaAtt = obterIdTurma();
                 Turma turma = new Turma(idTurmaAtt,0);
                 if (turma.excluir())
