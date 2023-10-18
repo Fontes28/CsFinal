@@ -112,7 +112,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand update = new MySqlCommand("update Estudio_Turma set idModalidade='" + modalidade + "', professorTurma=" + professor + ", horaTurma=" + hora + ", qtde_alunosMatriculados=" + qtde_Alunos + " where idEstudio_Modalidade=" + id + "", DAO_Conexao.con);
+                MySqlCommand update = new MySqlCommand("update Estudio_Turma set idModalidade='" + modalidade + "', professorTurma=" + professor + ", horaTurma=" + hora + ", qtde_alunosMatriculados=" + qtde_Alunos + " where idEstudio_Turma=" + id + "", DAO_Conexao.con);
                 update.ExecuteNonQuery();
                 updated = true;
             }
@@ -183,6 +183,32 @@ namespace Estudio
             {
                 DAO_Conexao.con.Open();
                 consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE idModalidade='" + id + "'", DAO_Conexao.con);
+                resultado = consulta.ExecuteReader();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.ToString());
+            }
+
+            finally
+            {
+
+
+            }
+            return resultado;
+        }
+        public MySqlDataReader consultarTurmaIdTurma(int id)
+        {
+            MySqlCommand consulta = null;
+            MySqlDataReader resultado = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+                consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE idEstudio_Turma='" + id + "'", DAO_Conexao.con);
                 resultado = consulta.ExecuteReader();
 
 

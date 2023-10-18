@@ -71,45 +71,45 @@ namespace Estudio
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 239);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(35, 13);
+            this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 9;
-            this.label6.Text = "label6";
+            this.label6.Text = "Qtde Alunos:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 186);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "label5";
+            this.label5.Text = "Hora: ";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 131);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.Size = new System.Drawing.Size(68, 13);
             this.label4.TabIndex = 7;
-            this.label4.Text = "label4";
+            this.label4.Text = "Dia Semana:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 76);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 6;
-            this.label3.Text = "label3";
+            this.label3.Text = "Professor: ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(6, 32);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(35, 13);
+            this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 5;
-            this.label2.Text = "label2";
+            this.label2.Text = "Modalidade: ";
             // 
             // txtQntdAlunos
             // 
@@ -161,9 +161,9 @@ namespace Estudio
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(321, 271);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(63, 13);
+            this.label1.Size = new System.Drawing.Size(65, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Modaidade:";
+            this.label1.Text = "Modalidade:";
             // 
             // btnAtualizar
             // 
@@ -182,6 +182,7 @@ namespace Estudio
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(440, 225);
             this.listBox1.TabIndex = 5;
+            this.listBox1.Click += new System.EventHandler(this.listBox1_Click);
             this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // ConsultarTurma

@@ -29,6 +29,7 @@ namespace Estudio
             txtProfessor.Enabled = false;
             txtQntdAlunos.Enabled = false;
             mkdHora.Enabled = false;
+            btnAtualizar.Visible = false;
             
             try
             {
@@ -55,6 +56,11 @@ namespace Estudio
         {
             try
             {
+                txtDiaSemana.Text = "";
+                txtModalidade.Text = "";
+                txtProfessor.Text = "";
+                txtQntdAlunos.Text = "";
+                mkdHora.Text = "";
                 nomeTurma = "";
                 nomeModalidade = "";
                 listBox1.Items.Clear();
@@ -91,19 +97,43 @@ namespace Estudio
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                int id=-1;
+                Modalidade modalidade = new Modalidade();
+                MySqlDataReader dataModalidade = modalidade.consultarModalidade(txtModalidade.Text);
+                while(dataModalidade.Read())
+                {
+                    id = int.Parse(dataModalidade["idEstudio_Modalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
+                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text));
+                turma.atualizar();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-           
-            resultado=listBox1.SelectedItem.ToString().Split('-');
+            dadosTela();
+            txtDiaSemana.Enabled = true;
+            txtProfessor.Enabled = true;
+            txtQntdAlunos.Enabled = true;
+            mkdHora.Enabled = true;
+            btnAtualizar.Visible = true;
+        }
+        private void dadosTela()
+        {
+            resultado = listBox1.SelectedItem.ToString().Split('-');
             modalidadeSelected = resultado[0];
             horarioSelected = resultado[1];
             MessageBox.Show(modalidadeSelected + "~~" + horarioSelected);
             Modalidade modalidade = new Modalidade();
             MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
-            while(rMod.Read())
+            while (rMod.Read())
             {
                 idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
             }
@@ -111,28 +141,36 @@ namespace Estudio
 
             Turma turma = new Turma();
             MySqlDataReader rDia = turma.consultarTurmaIdDia(idModalidadeBusca, horarioSelected);
-            while(rDia.Read())
+            while (rDia.Read())
             {
                 idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
-                MessageBox.Show(":"+idTurma);
-            }rDia.Close();
+                MessageBox.Show(":" + idTurma);
+            }
             DAO_Conexao.con.Close();
-            rDia = turma.consultarTurmaId(idTurma);
-            while(rDia.Read())
+            rDia = turma.consultarTurmaIdTurma(idTurma);
+            while (rDia.Read())
             {
                 txtDiaSemana.Text = rDia["diaSemanaTurma"].ToString();
                 txtModalidade.Text = modalidadeSelected;
                 txtProfessor.Text = rDia["professorTurma"].ToString();
                 txtQntdAlunos.Text = rDia["qtde_alunosMatriculados"].ToString();
+                mkdHora.Text = rDia["horaTurma"].ToString();
             }
             DAO_Conexao.con.Close();
-            txtDiaSemana.Enabled = true;
-            txtProfessor.Enabled = true;
-            txtQntdAlunos.Enabled = true;
-            mkdHora.Enabled = true;
-
-
-
         }
+
+        private void listBox1_Click(object sender, EventArgs e)
+        {
+            /*dadosTela();
+            listBox1.SelectedIndex = -1;
+            txtDiaSemana.Enabled = false;
+            txtModalidade.Enabled = false;
+            txtProfessor.Enabled = false;
+            txtQntdAlunos.Enabled = false;
+            mkdHora.Enabled = false;
+            btnAtualizar.Visible = false;*/
+        }
+
+       
     }
 }
