@@ -17,6 +17,10 @@ namespace Estudio
         {
             this.modalidade = modalidade;
         }
+        public Turma()
+        {
+
+        }
 
         public Turma(string professor, string dia_semana, string hora, int modalidade)
         {
@@ -49,9 +53,9 @@ namespace Estudio
             this.Qtde_Alunos = qtde_Alunos;
             this.Id = id;
         }
-        public Turma()
+        public Turma(int id, int aux)
         {
-          
+            this.Id = id;
         }
 
         public string Professor { get => professor; set => professor = value; }
@@ -169,7 +173,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand exclui = new MySqlCommand("update Estudio_Turma set ativa=1 where idModalidade = '" + id + "'", DAO_Conexao.con);
+                MySqlCommand exclui = new MySqlCommand("update Estudio_Turma set ativo=1 where idEstudio_Turma = '" + Id + "'", DAO_Conexao.con);
                 exclui.ExecuteNonQuery();
                 exc = true;
             }
@@ -235,7 +239,7 @@ namespace Estudio
             }
             return resultado;
         }
-        public MySqlDataReader consultarTurmaIdDia(int id, string dia)
+        public MySqlDataReader consultarTurmaIdDiaHora(int id, string dia,string hora)
         {
             MySqlCommand consulta = null;
             MySqlDataReader resultado = null;
@@ -243,7 +247,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE idModalidade='" + id + "' AND diaSemanaTurma='"+dia+"'", DAO_Conexao.con);
+                consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE idModalidade='" + id + "' AND diaSemanaTurma='" + dia + "' AND horaTurma='" + hora + "'", DAO_Conexao.con);
                 resultado = consulta.ExecuteReader();
 
 

@@ -21,6 +21,8 @@ namespace Estudio
         string horarioSelected;
         int idModalidadeBusca;
         int idTurma;
+        string horario;
+        string horaSelected;
         public ConsultarTurma()
         {
             InitializeComponent();
@@ -77,7 +79,8 @@ namespace Estudio
                 MySqlDataReader rLbx = t.consultarTurmaId(index);
                 while (rLbx.Read())
                 {
-                    nomeTurma = nomeModalidade + "-" + rLbx["diaSemanaTurma"].ToString();
+                    horario = rLbx["horaTurma"].ToString();
+                    nomeTurma = nomeModalidade + "-" + rLbx["diaSemanaTurma"].ToString()+"-"+horario;
                     listBox1.Items.Add(nomeTurma);
                     
                 }
@@ -109,8 +112,8 @@ namespace Estudio
                 }
                 DAO_Conexao.con.Close();
                 MessageBox.Show(id.ToString());
-                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text),idTurmaAtt);
-                dataModalidade=turma.consultarTurmaIdDia(id,t)
+                idTurmaAtt = obterIdTurma();
+                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text), idTurmaAtt);
                 if(turma.atualizar())
                 {
                     MessageBox.Show("Atualizado com sucesso");
@@ -128,6 +131,7 @@ namespace Estudio
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
+            Console.WriteLine("-o-o-o-o-o-o");
             dadosTela();
             txtDiaSemana.Enabled = true;
             txtProfessor.Enabled = true;
@@ -140,6 +144,7 @@ namespace Estudio
             resultado = listBox1.SelectedItem.ToString().Split('-');
             modalidadeSelected = resultado[0];
             horarioSelected = resultado[1];
+            horaSelected = resultado[2];
            
             Modalidade modalidade = new Modalidade();
             MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
@@ -150,7 +155,7 @@ namespace Estudio
             DAO_Conexao.con.Close();
 
             Turma turma = new Turma();
-            MySqlDataReader rDia = turma.consultarTurmaIdDia(idModalidadeBusca, horarioSelected);
+            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected,horaSelected);
             while (rDia.Read())
             {
                 idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
@@ -168,17 +173,42 @@ namespace Estudio
             }
             DAO_Conexao.con.Close();
         }
+        private int obterIdTurma()
+        {
+            resultado = listBox1.SelectedItem.ToString().Split('-');
+            modalidadeSelected = resultado[0];
+            horarioSelected = resultado[1];
+            horaSelected = resultado[2];
+
+            Modalidade modalidade = new Modalidade();
+            MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
+            while (rMod.Read())
+            {
+                idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
+            }
+            DAO_Conexao.con.Close();
+
+            Turma turma = new Turma();
+            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected,horaSelected);
+            while (rDia.Read())
+            {
+                idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
+
+            }
+            DAO_Conexao.con.Close();
+            return idTurma;
+        }
 
         private void listBox1_Click(object sender, EventArgs e)
         {
-            /*dadosTela();
-            listBox1.SelectedIndex = -1;
+            dadosTela();
+           // listBox1.SelectedIndex = -1;
             txtDiaSemana.Enabled = false;
             txtModalidade.Enabled = false;
             txtProfessor.Enabled = false;
             txtQntdAlunos.Enabled = false;
             mkdHora.Enabled = false;
-            btnAtualizar.Visible = false;*/
+            btnAtualizar.Visible = false;
         }
 
        
