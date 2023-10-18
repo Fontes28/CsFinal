@@ -40,6 +40,15 @@ namespace Estudio
             this.modalidade = modalidade;
             this.Qtde_Alunos = qtde_Alunos;
         }
+        public Turma(string professor, string dia_semana, string hora, int modalidade, int qtde_Alunos,int id)
+        {
+            this.professor = professor;
+            this.dia_semana = dia_semana;
+            this.hora = hora;
+            this.modalidade = modalidade;
+            this.Qtde_Alunos = qtde_Alunos;
+            this.Id = id;
+        }
         public Turma()
         {
           
@@ -112,7 +121,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand update = new MySqlCommand("update Estudio_Turma set idModalidade='" + modalidade + "', professorTurma=" + professor + ", horaTurma=" + hora + ", qtde_alunosMatriculados=" + qtde_Alunos + " where idEstudio_Turma=" + id + "", DAO_Conexao.con);
+                MySqlCommand update = new MySqlCommand("update Estudio_Turma set idModalidade=" + modalidade + ", professorTurma='" + professor + "', horaTurma='" + hora + "', qtde_alunosMatriculados=" + Qtde_Alunos + " where idEstudio_Turma=" + Id + "", DAO_Conexao.con);
                 update.ExecuteNonQuery();
                 updated = true;
             }

@@ -99,6 +99,7 @@ namespace Estudio
         {
             try
             {
+                int idTurmaAtt=-1;
                 int id=-1;
                 Modalidade modalidade = new Modalidade();
                 MySqlDataReader dataModalidade = modalidade.consultarModalidade(txtModalidade.Text);
@@ -107,8 +108,17 @@ namespace Estudio
                     id = int.Parse(dataModalidade["idEstudio_Modalidade"].ToString());
                 }
                 DAO_Conexao.con.Close();
-                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text));
-                turma.atualizar();
+                MessageBox.Show(id.ToString());
+                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text),idTurmaAtt);
+                dataModalidade=turma.consultarTurmaIdDia(id,t)
+                if(turma.atualizar())
+                {
+                    MessageBox.Show("Atualizado com sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Erro a atualizar");
+                }
             }
             catch(Exception ex)
             {
@@ -130,7 +140,7 @@ namespace Estudio
             resultado = listBox1.SelectedItem.ToString().Split('-');
             modalidadeSelected = resultado[0];
             horarioSelected = resultado[1];
-            MessageBox.Show(modalidadeSelected + "~~" + horarioSelected);
+           
             Modalidade modalidade = new Modalidade();
             MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
             while (rMod.Read())
@@ -144,7 +154,7 @@ namespace Estudio
             while (rDia.Read())
             {
                 idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
-                MessageBox.Show(":" + idTurma);
+                
             }
             DAO_Conexao.con.Close();
             rDia = turma.consultarTurmaIdTurma(idTurma);
