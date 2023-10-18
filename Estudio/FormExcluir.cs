@@ -22,11 +22,13 @@ namespace Estudio
             {
                 while (x.Read())
                 {
-                    /*int a = int.Parse(x["ativo"].ToString());
+                    int a = int.Parse(x["ativo"].ToString());
                     if (a == 0)
-                    {*/
+                    {
+                        cbxMod.Items.Add(x["descricaoModalidade"].ToString());
+                    }
 
-                    cbxMod.Items.Add(x["descricaoModalidade"].ToString());
+                    
 
                 }
             }

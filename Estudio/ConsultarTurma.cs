@@ -16,6 +16,11 @@ namespace Estudio
         int index;
         string nomeTurma;
         string nomeModalidade;
+        String[] resultado;
+        string modalidadeSelected;
+        string horarioSelected;
+        int idModalidadeBusca;
+        int idTurma;
         public ConsultarTurma()
         {
             InitializeComponent();
@@ -66,8 +71,9 @@ namespace Estudio
                 MySqlDataReader rLbx = t.consultarTurmaId(index);
                 while (rLbx.Read())
                 {
-                    nomeTurma = nomeModalidade + " - " + rLbx["diaSemanaTurma"].ToString();
+                    nomeTurma = nomeModalidade + "-" + rLbx["diaSemanaTurma"].ToString();
                     listBox1.Items.Add(nomeTurma);
+                    
                 }
                 DAO_Conexao.con.Close();
             }
@@ -90,8 +96,43 @@ namespace Estudio
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
+           
+            resultado=listBox1.SelectedItem.ToString().Split('-');
+            modalidadeSelected = resultado[0];
+            horarioSelected = resultado[1];
+            MessageBox.Show(modalidadeSelected + "~~" + horarioSelected);
+            Modalidade modalidade = new Modalidade();
+            MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
+            while(rMod.Read())
+            {
+                idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
+            }
+            DAO_Conexao.con.Close();
 
-            MySqlDataReader rTxt=
+            Turma turma = new Turma();
+            MySqlDataReader rDia = turma.consultarTurmaIdDia(idModalidadeBusca, horarioSelected);
+            while(rDia.Read())
+            {
+                idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
+                MessageBox.Show(":"+idTurma);
+            }rDia.Close();
+            DAO_Conexao.con.Close();
+            rDia = turma.consultarTurmaId(idTurma);
+            while(rDia.Read())
+            {
+                txtDiaSemana.Text = rDia["diaSemanaTurma"].ToString();
+                txtModalidade.Text = modalidadeSelected;
+                txtProfessor.Text = rDia["professorTurma"].ToString();
+                txtQntdAlunos.Text = rDia["qtde_alunosMatriculados"].ToString();
+            }
+            DAO_Conexao.con.Close();
+            txtDiaSemana.Enabled = true;
+            txtProfessor.Enabled = true;
+            txtQntdAlunos.Enabled = true;
+            mkdHora.Enabled = true;
+
+
+
         }
     }
 }

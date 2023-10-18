@@ -200,6 +200,33 @@ namespace Estudio
             }
             return resultado;
         }
+        public MySqlDataReader consultarTurmaIdDia(int id, string dia)
+        {
+            MySqlCommand consulta = null;
+            MySqlDataReader resultado = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+                consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE idModalidade='" + id + "' AND diaSemanaTurma='"+dia+"'", DAO_Conexao.con);
+                resultado = consulta.ExecuteReader();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.ToString());
+            }
+
+            finally
+            {
+
+
+            }
+            return resultado;
+        }
+
     }
 
 }
