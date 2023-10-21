@@ -1,25 +1,18 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using System.Windows.Forms;
 
 namespace Estudio
 {
     public partial class Form1 : Form
-    {   bool att;
+    {
+        private bool att;
+
         public Form1()
         {
-            
             InitializeComponent();
             menuStrip1.Enabled = false;
 
-            if (DAO_Conexao.getConexao("143.106.241.3", "cl202236", "cl202236", "DDTL/2508")) 
+            if (DAO_Conexao.getConexao("143.106.241.3", "cl202236", "cl202236", "DDTL/2508"))
                 Console.WriteLine("Conectado");
             else
                 Console.WriteLine("Erro de conexão");
@@ -27,29 +20,26 @@ namespace Estudio
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int tipo = DAO_Conexao.login("davic","2805");
+            int tipo = DAO_Conexao.login("davic", "2805");
             if (tipo == 0)
             {
                 MessageBox.Show("Usuário ou senha invalidos");
             }
-            if(tipo==1)
+            if (tipo == 1)
             {
                 groupBox1.Visible = false;
                 menuStrip1.Enabled = true;
             }
-            if(tipo==2)
+            if (tipo == 2)
             {
                 groupBox1.Visible = false;
                 menuStrip1.Enabled = true;
                 cadastrarLoginToolStripMenuItem.Enabled = false;
             }
-
-
         }
 
         private void cadastrarAlunoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -62,7 +52,6 @@ namespace Estudio
 
         private void cadastrarLoginToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
             Form2 form2 = new Form2();
             form2.MdiParent = this;
             form2.Show();
@@ -72,11 +61,6 @@ namespace Estudio
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void toolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void excluirAlunoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,7 +88,6 @@ namespace Estudio
 
         private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
             Form6 frm = new Form6();
             frm.MdiParent = this;
             frm.Show();

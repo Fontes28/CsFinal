@@ -1,29 +1,23 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Estudio
 {
     public partial class ConsultarTurma : Form
     {
-        int index;
-        string nomeTurma;
-        string nomeModalidade;
-        String[] resultado;
-        string modalidadeSelected;
-        string horarioSelected;
-        int idModalidadeBusca;
-        int idTurma;
-        string horario;
-        string horaSelected;
-        bool deletado;
+        private int index;
+        private string nomeTurma;
+        private string nomeModalidade;
+        private String[] resultado;
+        private string modalidadeSelected;
+        private string horarioSelected;
+        private int idModalidadeBusca;
+        private int idTurma;
+        private string horario;
+        private string horaSelected;
+        private bool deletado;
+
         public ConsultarTurma()
         {
             InitializeComponent();
@@ -35,18 +29,18 @@ namespace Estudio
             btnAtualizar.Visible = false;
             checkBox1.Visible = false;
             checkBox1.Enabled = false;
-            
+
             try
             {
                 Modalidade m = new Modalidade();
                 MySqlDataReader r = m.ConsultarTodasModalidadesAtivas();
-                while(r.Read())
+                while (r.Read())
                 {
                     comboBox1.Items.Add(r["descricaoModalidade"].ToString());
                 }
                 DAO_Conexao.con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
@@ -54,7 +48,6 @@ namespace Estudio
 
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -83,22 +76,19 @@ namespace Estudio
                 while (rLbx.Read())
                 {
                     horario = rLbx["horaTurma"].ToString();
-                    nomeTurma = nomeModalidade + "-" + rLbx["diaSemanaTurma"].ToString()+"-"+horario;
+                    nomeTurma = nomeModalidade + "-" + rLbx["diaSemanaTurma"].ToString() + "-" + horario;
                     listBox1.Items.Add(nomeTurma);
-                    
                 }
                 DAO_Conexao.con.Close();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
             }
-
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
@@ -112,19 +102,19 @@ namespace Estudio
                 {
                     ativo = 0;
                 }
-                int idTurmaAtt=-1;
-                int id=-1;
+                int idTurmaAtt = -1;
+                int id = -1;
                 Modalidade modalidade = new Modalidade();
                 MySqlDataReader dataModalidade = modalidade.consultarModalidade(txtModalidade.Text);
-                while(dataModalidade.Read())
+                while (dataModalidade.Read())
                 {
                     id = int.Parse(dataModalidade["idEstudio_Modalidade"].ToString());
                 }
                 DAO_Conexao.con.Close();
-                
+
                 idTurmaAtt = obterIdTurma();
-                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text), idTurmaAtt,ativo);
-                if(turma.atualizar())
+                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text), idTurmaAtt, ativo);
+                if (turma.atualizar())
                 {
                     MessageBox.Show("Atualizado com sucesso");
                 }
@@ -133,7 +123,7 @@ namespace Estudio
                     MessageBox.Show("Erro a atualizar");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
@@ -151,13 +141,14 @@ namespace Estudio
             checkBox1.Visible = true;
             checkBox1.Enabled = true;
         }
+
         private void dadosTela()
         {
             resultado = listBox1.SelectedItem.ToString().Split('-');
             modalidadeSelected = resultado[0];
             horarioSelected = resultado[1];
             horaSelected = resultado[2];
-           
+
             Modalidade modalidade = new Modalidade();
             MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
             while (rMod.Read())
@@ -167,11 +158,10 @@ namespace Estudio
             DAO_Conexao.con.Close();
 
             Turma turma = new Turma();
-            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected,horaSelected);
+            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
             while (rDia.Read())
             {
                 idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
-                
             }
             DAO_Conexao.con.Close();
             rDia = turma.consultarTurmaIdTurma(idTurma);
@@ -182,17 +172,18 @@ namespace Estudio
                 txtProfessor.Text = rDia["professorTurma"].ToString();
                 txtQntdAlunos.Text = rDia["qtde_alunosMatriculados"].ToString();
                 mkdHora.Text = rDia["horaTurma"].ToString();
-                if(int.Parse(rDia["ativo"].ToString())==1)
+                if (int.Parse(rDia["ativo"].ToString()) == 1)
                 {
                     checkBox1.Checked = true;
                 }
-                else if(int.Parse(rDia["ativo"].ToString()) == 0)
+                else if (int.Parse(rDia["ativo"].ToString()) == 0)
                 {
                     checkBox1.Checked = false;
                 }
             }
             DAO_Conexao.con.Close();
         }
+
         private int obterIdTurma()
         {
             resultado = listBox1.SelectedItem.ToString().Split('-');
@@ -209,11 +200,10 @@ namespace Estudio
             DAO_Conexao.con.Close();
 
             Turma turma = new Turma();
-            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected,horaSelected);
+            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
             while (rDia.Read())
             {
                 idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
-
             }
             DAO_Conexao.con.Close();
             return idTurma;
@@ -222,7 +212,7 @@ namespace Estudio
         private void listBox1_Click(object sender, EventArgs e)
         {
             dadosTela();
-           // listBox1.SelectedIndex = -1;
+            // listBox1.SelectedIndex = -1;
             txtDiaSemana.Enabled = false;
             txtModalidade.Enabled = false;
             txtProfessor.Enabled = false;
@@ -232,7 +222,5 @@ namespace Estudio
             checkBox1.Visible = true;
             checkBox1.Enabled = false;
         }
-
-       
     }
 }

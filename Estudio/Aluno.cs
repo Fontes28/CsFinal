@@ -1,13 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Estudio
 {
-    class Aluno
+    internal class Aluno
     {
         private String Bairro;
         private String CPF;
@@ -41,6 +37,7 @@ namespace Estudio
             setEmail(email);
             setFoto(foto);
         }
+
         public Aluno(String CPF, String nome, String rua,
            String numero, String bairro, String complemento,
            String CEP, String cidade, String estado,
@@ -57,12 +54,12 @@ namespace Estudio
             setEstado(estado);
             setTelefone(telefone);
             setEmail(email);
-
         }
+
         public Aluno(String CPF, String nome, String rua,
            String numero, String bairro, String complemento,
            String CEP, String cidade, String estado,
-           String telefone, String email,int ativo)
+           String telefone, String email, int ativo)
         {
             setCPF(CPF);
             setNome(nome);
@@ -76,8 +73,8 @@ namespace Estudio
             setTelefone(telefone);
             setEmail(email);
             setAtivo(ativo);
-
         }
+
         public String getCPF()
         {
             return CPF;
@@ -202,10 +199,12 @@ namespace Estudio
         {
             Foto = foto;
         }
+
         public void setAtivo(int ativo)
         {
             Ativo = ativo;
         }
+
         public int getAtivo()
         {
             return Ativo;
@@ -232,12 +231,8 @@ namespace Estudio
             return cad;
         }
 
-
-
-
         public bool consultarAluno()
         {
-
             bool existe = false;
             try
             {
@@ -272,22 +267,16 @@ namespace Estudio
                 DAO_Conexao.con.Open();
                 consulta01 = new MySqlCommand("SELECT * FROM Estudio_Aluno WHERE CPFALuno='" + CPF + "'", DAO_Conexao.con);
                 resultado = consulta01.ExecuteReader();
-                
-                
             }
             catch (Exception ex)
             {
-            
                 Console.WriteLine(ex.ToString());
             }
 
             finally
             {
-                
-               
-            } return resultado;
-
-            
+            }
+            return resultado;
         }
 
         public bool excluirAluno()
@@ -317,7 +306,7 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand update = new MySqlCommand("update Estudio_Aluno set nomeAluno='" + Nome + "', ruaAluno='" + Rua + "', numeroAluno='" + Numero + "', bairroAluno='" + Bairro + "', complementoAluno='" + Complemento + "', CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno='" + Telefone + "', emailAluno='" + Email + "', fotoAluno='" + Foto + "',ativo="+ Ativo +" where CPFAluno='" + CPF + "'", DAO_Conexao.con);
+                MySqlCommand update = new MySqlCommand("update Estudio_Aluno set nomeAluno='" + Nome + "', ruaAluno='" + Rua + "', numeroAluno='" + Numero + "', bairroAluno='" + Bairro + "', complementoAluno='" + Complemento + "', CEPAluno='" + CEP + "', cidadeAluno='" + Cidade + "', estadoAluno='" + Estado + "', telefoneAluno='" + Telefone + "', emailAluno='" + Email + "', fotoAluno='" + Foto + "',ativo=" + Ativo + " where CPFAluno='" + CPF + "'", DAO_Conexao.con);
                 update.ExecuteNonQuery();
                 up = true;
             }
@@ -331,7 +320,5 @@ namespace Estudio
             }
             return up;
         }
-
-
     }
 }

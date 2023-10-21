@@ -3,9 +3,8 @@ using System;
 
 namespace Estudio
 {
-    class DAO_Conexao
+    internal class DAO_Conexao
     {
-        
         public static MySqlConnection con;
 
         public static Boolean getConexao(String local, String banco, String user, String senha)
@@ -15,7 +14,7 @@ namespace Estudio
             {
                 con = new MySqlConnection("server=" + local + "; User ID=" + user + ";" + "database=" + banco +
                     "; password=" + senha + "; SslMode = none");
-               
+
                 retorno = true;
             }
             catch (Exception e)
@@ -31,13 +30,13 @@ namespace Estudio
             try
             {
                 con.Open();
-                MySqlCommand insere = new MySqlCommand("insert into Estudio_Login (usuario, senha, tipo)" + "values('" + usuario + "','" + senha+"'," + tipo + ")", con);
+                MySqlCommand insere = new MySqlCommand("insert into Estudio_Login (usuario, senha, tipo)" + "values('" + usuario + "','" + senha + "'," + tipo + ")", con);
                 insere.ExecuteNonQuery();
                 cad = true;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
-
             }
             finally
             {
@@ -46,13 +45,13 @@ namespace Estudio
             return cad;
         }
 
-        public static Boolean autenticaLogin(String usuario,String senha)
+        public static Boolean autenticaLogin(String usuario, String senha)
         {
             bool c = false;
             int xx;
             MySqlCommand insere2 = new MySqlCommand("select usuario from Estudio_Login where usuario=" + usuario + ";", con);
-            xx=insere2.ExecuteNonQuery();
-            if(xx!=1)
+            xx = insere2.ExecuteNonQuery();
+            if (xx != 1)
             {
                 return c;
             }
@@ -62,20 +61,21 @@ namespace Estudio
                 return c;
             }
         }
+
         public static int login(String usuario, String senha)
         {
             int tipo = 0;
             try
             {
                 con.Open();
-                MySqlCommand login = new MySqlCommand("Select* from Estudio_Login where usuario= '"+usuario+"' and senha= '"+senha+"'",con);
+                MySqlCommand login = new MySqlCommand("Select* from Estudio_Login where usuario= '" + usuario + "' and senha= '" + senha + "'", con);
                 MySqlDataReader resultado = login.ExecuteReader();
-                if(resultado.Read())
+                if (resultado.Read())
                 {
                     tipo = Convert.ToInt32(resultado["tipo"].ToString());
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }

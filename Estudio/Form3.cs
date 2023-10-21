@@ -1,12 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Estudio
@@ -16,10 +9,9 @@ namespace Estudio
         public Form3(bool att)
         {
             InitializeComponent();
-            if(att)
+            if (att)
             {
                 button2.Visible = false;
-
             }
             else
             {
@@ -29,26 +21,18 @@ namespace Estudio
             }
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
             Aluno aluno = new Aluno(maskedTextBox1.Text);
-            if(e.KeyChar==13)
+            if (e.KeyChar == 13)
             {
-               
-                
-                    if (aluno.consultarAluno())
-                    {
+                if (aluno.consultarAluno())
+                {
                     MessageBox.Show("Aluno já cadastrado");
                     try
                     {
-
                         MySqlDataReader r = aluno.consultarAluno01();
-                        
+
                         if (r.Read())
                         {
                             maskedTextBox1.Text = r["CPFAluno"].ToString();
@@ -70,15 +54,8 @@ namespace Estudio
                             {
                                 checkBox1.Checked = false;
                             }
-
-
-
                         }
                         maskedTextBox1.Enabled = false;
-
-
-
-
                     }
                     catch (Exception ex)
                     {
@@ -93,30 +70,23 @@ namespace Estudio
                 {
                     textBox1.Focus();
                 }
-                    DAO_Conexao.con.Close();
-                
+                DAO_Conexao.con.Close();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
 
         {
-            
-            Aluno aluno = new Aluno(maskedTextBox1.Text, textBox1.Text,textBox2.Text,textBox5.Text,textBox3.Text,textBox6.Text,maskedTextBox2.Text,textBox4.Text,textBox7.Text,maskedTextBox3.Text,textBox8.Text);
+            Aluno aluno = new Aluno(maskedTextBox1.Text, textBox1.Text, textBox2.Text, textBox5.Text, textBox3.Text, textBox6.Text, maskedTextBox2.Text, textBox4.Text, textBox7.Text, maskedTextBox3.Text, textBox8.Text);
 
-            
-         
-                if (aluno.cadastrarAluno())
-
-                {
-                    MessageBox.Show("Cadastro realizado");
-
-                }
-                else
-                {
-                    MessageBox.Show("Erro no cadastro");
-
-                }
+            if (aluno.cadastrarAluno())
+            {
+                MessageBox.Show("Cadastro realizado");
+            }
+            else
+            {
+                MessageBox.Show("Erro no cadastro");
+            }
 
             maskedTextBox1.Text = "";
             textBox1.Text = "";

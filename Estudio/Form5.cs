@@ -1,12 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Estudio
@@ -18,9 +11,6 @@ namespace Estudio
 
         private int codigoId;
 
-
-
-
         public Form5(bool att)
         {
             InitializeComponent();
@@ -28,28 +18,22 @@ namespace Estudio
             MySqlDataReader x = modalidade1.ConsultarTodasModalidades();
             while (x.Read())
             {
-
                 comboBox1.Items.Add(x["descricaoModalidade"].ToString());
             }
             DAO_Conexao.con.Close();
             this.att = att;
-            if(!att)
+            if (!att)
             {
-                btnAtualizar.Visible=false;
+                btnAtualizar.Visible = false;
                 txtAluno.Enabled = false;
                 txtAulas.Enabled = false;
                 txtPreco.Enabled = false;
                 checkBox1.Enabled = false;
-                
-               
-                
             }
-
         }
 
         private void label4_Click(object sender, EventArgs e)
         {
-
         }
 
         private void btnAtualizar_Click(object sender, EventArgs e)
@@ -78,14 +62,13 @@ namespace Estudio
                         if (m.atualizaModalidade())
                         {
                             MessageBox.Show("Atualizado com Sucesso");
-
                         }
                         else
                         {
                             MessageBox.Show("Erro ao atualizar");
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show("Não é possivel atualizar com campos em branco");
                     }
@@ -104,7 +87,6 @@ namespace Estudio
                             txtAluno.Text = r["qtdeAlunos"].ToString();
                             txtAulas.Text = r["qtdeAulas"].ToString();
                             txtPreco.Text = r["precoModalidade"].ToString();
-
                         }
                         DAO_Conexao.con.Close();
                     }
@@ -116,61 +98,54 @@ namespace Estudio
                 txtAluno.Text = "";
                 txtAulas.Text = "";
                 txtPreco.Text = "";
-                
+
                 checkBox1.Checked = false;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Os campos não podem estar em Branco");
             }
         }
+
         private void btnConsultar_Click(object sender, EventArgs e)
         {
-
         }
 
         private void Form5_Load(object sender, EventArgs e)
         {
-
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+            try
+            {
+                Modalidade md = new Modalidade();
+                descricacaoSel = comboBox1.SelectedItem.ToString();
 
-
-                try
+                MySqlDataReader r = md.consultarModalidade(descricacaoSel);
+                while (r.Read())
                 {
-                    Modalidade md = new Modalidade();
-                    descricacaoSel = comboBox1.SelectedItem.ToString();
-                  
-                    MySqlDataReader r = md.consultarModalidade(descricacaoSel);
-                    while (r.Read())
+                    descricacaoSel = r["descricaoModalidade"].ToString();
+                    txtAluno.Text = r["qtdeAlunos"].ToString();
+                    txtAulas.Text = r["qtdeAulas"].ToString();
+                    txtPreco.Text = r["precoModalidade"].ToString();
+                    codigoId = int.Parse(r["idEstudio_Modalidade"].ToString());
+                    bool a;
+                    if (r["ativa"].ToString().Equals("1"))
                     {
-                        descricacaoSel = r["descricaoModalidade"].ToString();
-                        txtAluno.Text = r["qtdeAlunos"].ToString();
-                        txtAulas.Text = r["qtdeAulas"].ToString();
-                        txtPreco.Text = r["precoModalidade"].ToString();
-                        codigoId= int.Parse(r["idEstudio_Modalidade"].ToString());
-                        bool a;
-                        if(r["ativa"].ToString().Equals("1"))
-                        {
                         checkBox1.Checked = true;
-                        }
-                        else
-                        {
-                        checkBox1.Checked = false;
-                        }
-                        
-
                     }
-                    DAO_Conexao.con.Close();
+                    else
+                    {
+                        checkBox1.Checked = false;
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                }
-            
+                DAO_Conexao.con.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }

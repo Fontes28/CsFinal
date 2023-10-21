@@ -1,25 +1,21 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Estudio
 {
-    class Turma
+    internal class Turma
     {
         private string professor, dia_semana, hora;
-        private int modalidade, qtde_Alunos,id,del;
+        private int modalidade, qtde_Alunos, id, del;
 
         public Turma(int modalidade)
         {
             this.modalidade = modalidade;
         }
+
         public Turma()
         {
-
         }
 
         public Turma(string professor, string dia_semana, string hora, int modalidade)
@@ -44,7 +40,8 @@ namespace Estudio
             this.modalidade = modalidade;
             this.Qtde_Alunos = qtde_Alunos;
         }
-        public Turma(string professor, string dia_semana, string hora, int modalidade, int qtde_Alunos,int id,int del)
+
+        public Turma(string professor, string dia_semana, string hora, int modalidade, int qtde_Alunos, int id, int del)
         {
             this.professor = professor;
             this.dia_semana = dia_semana;
@@ -54,6 +51,7 @@ namespace Estudio
             this.Id = id;
             this.del = del;
         }
+
         public Turma(string professor, string dia_semana, string hora, int modalidade, int qtde_Alunos, int id)
         {
             this.professor = professor;
@@ -62,8 +60,8 @@ namespace Estudio
             this.modalidade = modalidade;
             this.Qtde_Alunos = qtde_Alunos;
             this.Id = id;
-            
         }
+
         public Turma(int id, int aux)
         {
             this.Id = id;
@@ -89,7 +87,6 @@ namespace Estudio
             }
             catch (Exception ex)
             {
-              
                 Console.WriteLine(ex.ToString());
             }
             finally
@@ -97,7 +94,6 @@ namespace Estudio
                 DAO_Conexao.con.Close();
             }
             return cad;
-
         }
 
         public bool consultarBoolean()
@@ -125,18 +121,15 @@ namespace Estudio
             }
 
             return existe;
-
-
         }
-        
-        
+
         public bool atualizar()
         {
             bool updated = false;
             try
             {
                 DAO_Conexao.con.Open();
-                MySqlCommand update = new MySqlCommand("update Estudio_Turma set idModalidade=" + modalidade + ", professorTurma='" + professor + "', horaTurma='" + hora + "', qtde_alunosMatriculados=" + Qtde_Alunos + ",ativo='"+del+"' where idEstudio_Turma=" + Id + "", DAO_Conexao.con);
+                MySqlCommand update = new MySqlCommand("update Estudio_Turma set idModalidade=" + modalidade + ", professorTurma='" + professor + "', horaTurma='" + hora + "', qtde_alunosMatriculados=" + Qtde_Alunos + ",ativo='" + del + "' where idEstudio_Turma=" + Id + "", DAO_Conexao.con);
                 update.ExecuteNonQuery();
                 updated = true;
             }
@@ -161,19 +154,14 @@ namespace Estudio
                 DAO_Conexao.con.Open();
                 consultaTodos = new MySqlCommand("SELECT * FROM Estudio_Turma", DAO_Conexao.con);
                 resultadoTodos = consultaTodos.ExecuteReader();
-
-
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex.ToString());
             }
 
             finally
             {
-
-
             }
             return resultadoTodos;
         }
@@ -198,6 +186,7 @@ namespace Estudio
             }
             return exc;
         }
+
         public bool excluirViaModalidade()
         {
             bool exc = false;
@@ -218,6 +207,7 @@ namespace Estudio
             }
             return exc;
         }
+
         public MySqlDataReader consultarTurmaId(int id)
         {
             MySqlCommand consulta = null;
@@ -228,22 +218,18 @@ namespace Estudio
                 DAO_Conexao.con.Open();
                 consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE idModalidade='" + id + "'", DAO_Conexao.con);
                 resultado = consulta.ExecuteReader();
-
-
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex.ToString());
             }
 
             finally
             {
-
-
             }
             return resultado;
         }
+
         public MySqlDataReader consultarTurmaIdTurma(int id)
         {
             MySqlCommand consulta = null;
@@ -254,23 +240,19 @@ namespace Estudio
                 DAO_Conexao.con.Open();
                 consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE idEstudio_Turma='" + id + "'", DAO_Conexao.con);
                 resultado = consulta.ExecuteReader();
-
-
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex.ToString());
             }
 
             finally
             {
-
-
             }
             return resultado;
         }
-        public MySqlDataReader consultarTurmaIdDiaHora(int id, string dia,string hora)
+
+        public MySqlDataReader consultarTurmaIdDiaHora(int id, string dia, string hora)
         {
             MySqlCommand consulta = null;
             MySqlDataReader resultado = null;
@@ -280,24 +262,16 @@ namespace Estudio
                 DAO_Conexao.con.Open();
                 consulta = new MySqlCommand("SELECT * FROM Estudio_Turma WHERE idModalidade='" + id + "' AND diaSemanaTurma='" + dia + "' AND horaTurma='" + hora + "'", DAO_Conexao.con);
                 resultado = consulta.ExecuteReader();
-
-
             }
             catch (Exception ex)
             {
-
                 Console.WriteLine(ex.ToString());
             }
 
             finally
             {
-
-
             }
             return resultado;
         }
-
     }
-
 }
-
