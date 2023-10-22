@@ -45,6 +45,7 @@ namespace Estudio
             // mkCPF
             // 
             this.mkCPF.Location = new System.Drawing.Point(95, 28);
+            this.mkCPF.Mask = "999,999,999-99";
             this.mkCPF.Name = "mkCPF";
             this.mkCPF.Size = new System.Drawing.Size(100, 20);
             this.mkCPF.TabIndex = 1;

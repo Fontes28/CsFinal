@@ -21,10 +21,8 @@ namespace Estudio
             {
                 tipo = 2;
             }
-            if (!DAO_Conexao.verificaLogin(textBox1.Text))
+            try
             {
-
-
                 if (DAO_Conexao.Form2Login(textBox1.Text, textBox2.Text, tipo))
                 {
                     MessageBox.Show("Cadastro realizado com sucesso");
@@ -36,9 +34,9 @@ namespace Estudio
                 textBox2.Text = "";
                 comboBox1.SelectedIndex = -1;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Já existe um Login com este nome");
+                MessageBox.Show("Já existe um login com este nome");
             }
         }
     }

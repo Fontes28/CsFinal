@@ -30,6 +30,7 @@ namespace Estudio
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -56,7 +57,6 @@ namespace Estudio
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -94,6 +94,16 @@ namespace Estudio
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dados Cadastrais";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(452, 40);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(68, 17);
+            this.checkBox1.TabIndex = 25;
+            this.checkBox1.Text = "Excluída";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // button3
             // 
@@ -233,6 +243,7 @@ namespace Estudio
             // maskedTextBox1
             // 
             this.maskedTextBox1.Location = new System.Drawing.Point(92, 21);
+            this.maskedTextBox1.Mask = "999,999,999-99";
             this.maskedTextBox1.Name = "maskedTextBox1";
             this.maskedTextBox1.Size = new System.Drawing.Size(144, 20);
             this.maskedTextBox1.TabIndex = 6;
@@ -308,16 +319,6 @@ namespace Estudio
             this.button1.TabIndex = 2;
             this.button1.Text = "Ecolher Foto";
             this.button1.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(452, 40);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(68, 17);
-            this.checkBox1.TabIndex = 25;
-            this.checkBox1.Text = "Excluída";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form3
             // 

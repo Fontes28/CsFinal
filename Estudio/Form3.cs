@@ -23,9 +23,11 @@ namespace Estudio
 
         private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Aluno aluno = new Aluno(maskedTextBox1.Text);
+           Aluno aluno = new Aluno(maskedTextBox1.Text);
+            
             if (e.KeyChar == 13)
-            {
+            { aluno.verificaCPF();
+            MessageBox.Show(maskedTextBox1.Text);
                 if (aluno.consultarAluno())
                 {
                     MessageBox.Show("Aluno já cadastrado");
@@ -78,14 +80,20 @@ namespace Estudio
 
         {
             Aluno aluno = new Aluno(maskedTextBox1.Text, textBox1.Text, textBox2.Text, textBox5.Text, textBox3.Text, textBox6.Text, maskedTextBox2.Text, textBox4.Text, textBox7.Text, maskedTextBox3.Text, textBox8.Text);
-
-            if (aluno.cadastrarAluno())
+            if (aluno.verificaCPF())
             {
-                MessageBox.Show("Cadastro realizado");
+                if (aluno.cadastrarAluno())
+                {
+                    MessageBox.Show("Cadastro realizado");
+                }
+                else
+                {
+                    MessageBox.Show("Erro no cadastro");
+                }
             }
             else
             {
-                MessageBox.Show("Erro no cadastro");
+                MessageBox.Show("CPF Inválido, Cadastro não Realizado!");
             }
 
             maskedTextBox1.Text = "";
@@ -104,13 +112,20 @@ namespace Estudio
         private void button3_Click(object sender, EventArgs e)
         {
             Aluno aluno = new Aluno(maskedTextBox1.Text, textBox1.Text, textBox2.Text, textBox5.Text, textBox3.Text, textBox6.Text, maskedTextBox2.Text, textBox4.Text, textBox7.Text, maskedTextBox3.Text, textBox8.Text);
-            if (aluno.atualizarAluno())
+            if (aluno.verificaCPF())
             {
-                MessageBox.Show("Atualizado com Sucesso");
+                if (aluno.atualizarAluno())
+                {
+                    MessageBox.Show("Atualizado com Sucesso");
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao Atualizar");
+                }
             }
             else
             {
-                MessageBox.Show("Erro ao Atualizar");
+                MessageBox.Show("CPF Inválido, Atualização não Realizada!");
             }
 
             maskedTextBox1.Text = "";

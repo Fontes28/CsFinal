@@ -27,21 +27,25 @@ namespace Estudio
         public static Boolean Form2Login(String usuario, String senha, int tipo)
         {
             bool cad = false;
-            try
+            if (DAO_Conexao.verificaLogin(usuario) == false)
             {
-                con.Open();
-                MySqlCommand insere = new MySqlCommand("insert into Estudio_Login (usuario, senha, tipo)" + "values('" + usuario + "','" + senha + "'," + tipo + ")", con);
-                insere.ExecuteNonQuery();
-                cad = true;
+                try
+                {
+                    con.Open();
+                    MySqlCommand insere = new MySqlCommand("insert into Estudio_Login (usuario, senha, tipo)" + "values('" + usuario + "','" + senha + "'," + tipo + ")", con);
+                    insere.ExecuteNonQuery();
+                    cad = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
+                finally
+                {
+                    con.Close();
+                }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());
-            }
-            finally
-            {
-                con.Close();
-            }
+           
             return cad;
         }
 
@@ -94,11 +98,10 @@ namespace Estudio
                 int xy;
                 MySqlCommand insere2 = new MySqlCommand("select usuario from Estudio_Login where usuario=" + user + ";", con);
                 xy = insere2.ExecuteNonQuery();
-                if (xy !=0)
+                if (xy != 0)
                 {
                     existe = true;
                 }
-                
             }
             catch (Exception ex)
             {
