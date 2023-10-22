@@ -85,5 +85,30 @@ namespace Estudio
             }
             return tipo;
         }
+
+        public static Boolean verificaLogin(string user)
+        {
+            bool existe = false;
+            try
+            {
+                int xy;
+                MySqlCommand insere2 = new MySqlCommand("select usuario from Estudio_Login where usuario=" + user + ";", con);
+                xy = insere2.ExecuteNonQuery();
+                if (xy !=0)
+                {
+                    existe = true;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro ao verificar existencia de Login");
+            }
+            finally
+            {
+                con.Close();
+            }
+            return existe;
+        }
     }
 }

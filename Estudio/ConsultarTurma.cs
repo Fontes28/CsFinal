@@ -17,10 +17,12 @@ namespace Estudio
         private string horario;
         private string horaSelected;
         private bool deletado;
+        private int tipoLogin;
 
-        public ConsultarTurma()
+        public ConsultarTurma(int tipo)
         {
             InitializeComponent();
+            tipoLogin = tipo;
             txtDiaSemana.Enabled = false;
             txtModalidade.Enabled = false;
             txtProfessor.Enabled = false;
@@ -93,59 +95,65 @@ namespace Estudio
 
         private void btnAtualizar_Click(object sender, EventArgs e)
         {
-            try
+            if (tipoLogin == 1)
             {
-                int ativo;
-                if (checkBox1.Checked)
-                    ativo = 1;
-                else
+                try
                 {
-                    ativo = 0;
-                }
-                int idTurmaAtt = -1;
-                int id = -1;
-                Modalidade modalidade = new Modalidade();
-                MySqlDataReader dataModalidade = modalidade.consultarModalidade(txtModalidade.Text);
-                while (dataModalidade.Read())
-                {
-                    id = int.Parse(dataModalidade["idEstudio_Modalidade"].ToString());
-                }
-                DAO_Conexao.con.Close();
+                    int ativo;
+                    if (checkBox1.Checked)
+                        ativo = 1;
+                    else
+                    {
+                        ativo = 0;
+                    }
+                    int idTurmaAtt = -1;
+                    int id = -1;
+                    Modalidade modalidade = new Modalidade();
+                    MySqlDataReader dataModalidade = modalidade.consultarModalidade(txtModalidade.Text);
+                    while (dataModalidade.Read())
+                    {
+                        id = int.Parse(dataModalidade["idEstudio_Modalidade"].ToString());
+                    }
+                    DAO_Conexao.con.Close();
 
-                idTurmaAtt = obterIdTurma();
-                Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text), idTurmaAtt, ativo);
-                if (turma.atualizar())
-                {
-                    MessageBox.Show("Atualizado com sucesso");
+                    idTurmaAtt = obterIdTurma();
+                    Turma turma = new Turma(txtProfessor.Text, txtDiaSemana.Text, mkdHora.Text, id, int.Parse(txtQntdAlunos.Text), idTurmaAtt, ativo);
+                    if (turma.atualizar())
+                    {
+                        MessageBox.Show("Atualizado com sucesso");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro a atualizar");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Erro a atualizar");
+                    Console.WriteLine(ex.ToString());
                 }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
             }
         }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            try
+            if (tipoLogin == 1)
             {
-                Console.WriteLine("-o-o-o-o-o-o");
-                dadosTela();
-                txtDiaSemana.Enabled = true;
-                txtProfessor.Enabled = true;
-                txtQntdAlunos.Enabled = true;
-                mkdHora.Enabled = true;
-                btnAtualizar.Visible = true;
-                checkBox1.Visible = true;
-                checkBox1.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                try
+                {
+                    Console.WriteLine("-o-o-o-o-o-o");
+                    dadosTela();
+                    txtDiaSemana.Enabled = true;
+                    txtProfessor.Enabled = true;
+                    txtQntdAlunos.Enabled = true;
+                    mkdHora.Enabled = true;
+                    btnAtualizar.Visible = true;
+                    checkBox1.Visible = true;
+                    checkBox1.Enabled = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
         }
 

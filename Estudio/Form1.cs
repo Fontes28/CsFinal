@@ -6,6 +6,7 @@ namespace Estudio
     public partial class Form1 : Form
     {
         private bool att;
+        int tipo;
 
         public Form1()
         {
@@ -24,7 +25,7 @@ namespace Estudio
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int tipo = DAO_Conexao.login("davic", "2805");
+            tipo = DAO_Conexao.login("davi", "202236");
             if (tipo == 0)
             {
                 MessageBox.Show("Usuário ou senha invalidos");
@@ -33,11 +34,18 @@ namespace Estudio
             {
                 groupBox1.Visible = false;
                 menuStrip1.Enabled = true;
+
             }
             if (tipo == 2)
             {
                 groupBox1.Visible = false;
                 menuStrip1.Enabled = true;
+                cadastrarToolStripMenuItem.Enabled = false;
+                excluirToolStripMenuItem.Enabled = false;
+                atualizarToolStripMenuItem.Enabled = false;
+                cadastrarToolStripMenuItem1.Enabled = false;
+                excluirToolStripMenuItem1.Enabled = false;
+                consultarAtualizarToolStripMenuItem.Text = "Consultar";
                 cadastrarLoginToolStripMenuItem.Enabled = false;
             }
         }
@@ -124,7 +132,7 @@ namespace Estudio
 
         private void consultarAtualizarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ConsultarTurma frm = new ConsultarTurma();
+            ConsultarTurma frm = new ConsultarTurma(tipo);
             frm.MdiParent = this;
             frm.Show();
         }

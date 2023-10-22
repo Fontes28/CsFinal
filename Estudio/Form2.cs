@@ -21,16 +21,25 @@ namespace Estudio
             {
                 tipo = 2;
             }
-            if (DAO_Conexao.Form2Login(textBox1.Text, textBox2.Text, tipo))
+            if (!DAO_Conexao.verificaLogin(textBox1.Text))
             {
-                MessageBox.Show("Cadastro realizado com sucesso");
+
+
+                if (DAO_Conexao.Form2Login(textBox1.Text, textBox2.Text, tipo))
+                {
+                    MessageBox.Show("Cadastro realizado com sucesso");
+                }
+                else
+                    MessageBox.Show("Erro de cadastro");
+
+                textBox1.Text = "";
+                textBox2.Text = "";
+                comboBox1.SelectedIndex = -1;
             }
             else
-                MessageBox.Show("Erro de cadastro");
-
-            textBox1.Text = "";
-            textBox2.Text = "";
-            comboBox1.SelectedIndex = -1;
+            {
+                MessageBox.Show("Já existe um Login com este nome");
+            }
         }
     }
 }
