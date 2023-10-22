@@ -131,96 +131,124 @@ namespace Estudio
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            Console.WriteLine("-o-o-o-o-o-o");
-            dadosTela();
-            txtDiaSemana.Enabled = true;
-            txtProfessor.Enabled = true;
-            txtQntdAlunos.Enabled = true;
-            mkdHora.Enabled = true;
-            btnAtualizar.Visible = true;
-            checkBox1.Visible = true;
-            checkBox1.Enabled = true;
+            try
+            {
+                Console.WriteLine("-o-o-o-o-o-o");
+                dadosTela();
+                txtDiaSemana.Enabled = true;
+                txtProfessor.Enabled = true;
+                txtQntdAlunos.Enabled = true;
+                mkdHora.Enabled = true;
+                btnAtualizar.Visible = true;
+                checkBox1.Visible = true;
+                checkBox1.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private void dadosTela()
         {
-            resultado = listBox1.SelectedItem.ToString().Split('-');
-            modalidadeSelected = resultado[0];
-            horarioSelected = resultado[1];
-            horaSelected = resultado[2];
+            try
+            {
+                resultado = listBox1.SelectedItem.ToString().Split('-');
+                modalidadeSelected = resultado[0];
+                horarioSelected = resultado[1];
+                horaSelected = resultado[2];
 
-            Modalidade modalidade = new Modalidade();
-            MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
-            while (rMod.Read())
-            {
-                idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
-            }
-            DAO_Conexao.con.Close();
+                Modalidade modalidade = new Modalidade();
+                MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
+                while (rMod.Read())
+                {
+                    idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
 
-            Turma turma = new Turma();
-            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
-            while (rDia.Read())
-            {
-                idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
-            }
-            DAO_Conexao.con.Close();
-            rDia = turma.consultarTurmaIdTurma(idTurma);
-            while (rDia.Read())
-            {
-                txtDiaSemana.Text = rDia["diaSemanaTurma"].ToString();
-                txtModalidade.Text = modalidadeSelected;
-                txtProfessor.Text = rDia["professorTurma"].ToString();
-                txtQntdAlunos.Text = rDia["qtde_alunosMatriculados"].ToString();
-                mkdHora.Text = rDia["horaTurma"].ToString();
-                if (int.Parse(rDia["ativo"].ToString()) == 1)
+                Turma turma = new Turma();
+                MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
+                while (rDia.Read())
                 {
-                    checkBox1.Checked = true;
+                    idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
                 }
-                else if (int.Parse(rDia["ativo"].ToString()) == 0)
+                DAO_Conexao.con.Close();
+                rDia = turma.consultarTurmaIdTurma(idTurma);
+                while (rDia.Read())
                 {
-                    checkBox1.Checked = false;
+                    txtDiaSemana.Text = rDia["diaSemanaTurma"].ToString();
+                    txtModalidade.Text = modalidadeSelected;
+                    txtProfessor.Text = rDia["professorTurma"].ToString();
+                    txtQntdAlunos.Text = rDia["qtde_alunosMatriculados"].ToString();
+                    mkdHora.Text = rDia["horaTurma"].ToString();
+                    if (int.Parse(rDia["ativo"].ToString()) == 1)
+                    {
+                        checkBox1.Checked = true;
+                    }
+                    else if (int.Parse(rDia["ativo"].ToString()) == 0)
+                    {
+                        checkBox1.Checked = false;
+                    }
                 }
+                DAO_Conexao.con.Close();
             }
-            DAO_Conexao.con.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         private int obterIdTurma()
         {
-            resultado = listBox1.SelectedItem.ToString().Split('-');
-            modalidadeSelected = resultado[0];
-            horarioSelected = resultado[1];
-            horaSelected = resultado[2];
-
-            Modalidade modalidade = new Modalidade();
-            MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
-            while (rMod.Read())
+            try
             {
-                idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
-            }
-            DAO_Conexao.con.Close();
+                resultado = listBox1.SelectedItem.ToString().Split('-');
+                modalidadeSelected = resultado[0];
+                horarioSelected = resultado[1];
+                horaSelected = resultado[2];
 
-            Turma turma = new Turma();
-            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
-            while (rDia.Read())
-            {
-                idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
+                Modalidade modalidade = new Modalidade();
+                MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
+                while (rMod.Read())
+                {
+                    idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
+
+                Turma turma = new Turma();
+                MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
+                while (rDia.Read())
+                {
+                    idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
+                }
+                DAO_Conexao.con.Close();
             }
-            DAO_Conexao.con.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             return idTurma;
         }
 
         private void listBox1_Click(object sender, EventArgs e)
         {
-            dadosTela();
-            // listBox1.SelectedIndex = -1;
-            txtDiaSemana.Enabled = false;
-            txtModalidade.Enabled = false;
-            txtProfessor.Enabled = false;
-            txtQntdAlunos.Enabled = false;
-            mkdHora.Enabled = false;
-            btnAtualizar.Visible = false;
-            checkBox1.Visible = true;
-            checkBox1.Enabled = false;
+            try
+            {
+                dadosTela();
+
+                txtDiaSemana.Enabled = false;
+                txtModalidade.Enabled = false;
+                txtProfessor.Enabled = false;
+                txtQntdAlunos.Enabled = false;
+                mkdHora.Enabled = false;
+                btnAtualizar.Visible = false;
+                checkBox1.Visible = true;
+                checkBox1.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

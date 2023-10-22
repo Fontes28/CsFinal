@@ -34,7 +34,6 @@ namespace Estudio
             this.label5 = new System.Windows.Forms.Label();
             this.btnCadastrar = new System.Windows.Forms.Button();
             this.mkdHora = new System.Windows.Forms.MaskedTextBox();
-            this.txtSemana = new System.Windows.Forms.TextBox();
             this.txtProfessor = new System.Windows.Forms.TextBox();
             this.txtMod = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,17 +42,20 @@ namespace Estudio
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Modalidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.txtQtdeAluno);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnCadastrar);
             this.groupBox1.Controls.Add(this.mkdHora);
-            this.groupBox1.Controls.Add(this.txtSemana);
             this.groupBox1.Controls.Add(this.txtProfessor);
             this.groupBox1.Controls.Add(this.txtMod);
             this.groupBox1.Controls.Add(this.label4);
@@ -101,13 +103,6 @@ namespace Estudio
             this.mkdHora.Size = new System.Drawing.Size(261, 20);
             this.mkdHora.TabIndex = 7;
             this.mkdHora.Text = "0";
-            // 
-            // txtSemana
-            // 
-            this.txtSemana.Location = new System.Drawing.Point(117, 100);
-            this.txtSemana.Name = "txtSemana";
-            this.txtSemana.Size = new System.Drawing.Size(261, 20);
-            this.txtSemana.TabIndex = 6;
             // 
             // txtProfessor
             // 
@@ -170,12 +165,28 @@ namespace Estudio
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-          /*  this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);*/
             // 
             // Modalidade
             // 
             this.Modalidade.HeaderText = "Modalidade";
             this.Modalidade.Name = "Modalidade";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(121, 100);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(70, 21);
+            this.comboBox1.TabIndex = 11;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(235, 100);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(70, 21);
+            this.comboBox2.TabIndex = 12;
             // 
             // cadastrar_Turma
             // 
@@ -198,7 +209,6 @@ namespace Estudio
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnCadastrar;
         private System.Windows.Forms.MaskedTextBox mkdHora;
-        private System.Windows.Forms.TextBox txtSemana;
         private System.Windows.Forms.TextBox txtProfessor;
         private System.Windows.Forms.TextBox txtMod;
         private System.Windows.Forms.Label label4;
@@ -209,5 +219,7 @@ namespace Estudio
         private System.Windows.Forms.DataGridViewTextBoxColumn Modalidade;
         private System.Windows.Forms.TextBox txtQtdeAluno;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

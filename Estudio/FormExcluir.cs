@@ -19,11 +19,11 @@ namespace Estudio
 
         public FormExcluir()
         {
-            InitializeComponent();
-            btnExcluir.Visible = false;
-
             try
             {
+                InitializeComponent();
+                btnExcluir.Visible = false;
+
                 Modalidade m = new Modalidade();
                 MySqlDataReader r = m.ConsultarTodasModalidadesAtivas();
                 while (r.Read())
@@ -71,50 +71,64 @@ namespace Estudio
 
         private void dadosTela()
         {
-            resultado = listBox1.SelectedItem.ToString().Split('-');
-            modalidadeSelected = resultado[0];
-            horarioSelected = resultado[1];
-            horaSelected = resultado[2];
-
-            Modalidade modalidade = new Modalidade();
-            MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
-            while (rMod.Read())
+            try
             {
-                idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
-            }
-            DAO_Conexao.con.Close();
+                resultado = listBox1.SelectedItem.ToString().Split('-');
+                modalidadeSelected = resultado[0];
+                horarioSelected = resultado[1];
+                horaSelected = resultado[2];
 
-            Turma turma = new Turma();
-            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
-            while (rDia.Read())
-            {
-                idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
+                Modalidade modalidade = new Modalidade();
+                MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
+                while (rMod.Read())
+                {
+                    idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
+
+                Turma turma = new Turma();
+                MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
+                while (rDia.Read())
+                {
+                    idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
+                }
+                DAO_Conexao.con.Close();
             }
-            DAO_Conexao.con.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         private int obterIdTurma()
         {
-            resultado = listBox1.SelectedItem.ToString().Split('-');
-            modalidadeSelected = resultado[0];
-            horarioSelected = resultado[1];
-            horaSelected = resultado[2];
+            try {
+                resultado = listBox1.SelectedItem.ToString().Split('-');
+                modalidadeSelected = resultado[0];
+                horarioSelected = resultado[1];
+                horaSelected = resultado[2];
 
-            Modalidade modalidade = new Modalidade();
-            MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
-            while (rMod.Read())
-            {
-                idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
-            }
-            DAO_Conexao.con.Close();
+                Modalidade modalidade = new Modalidade();
+                MySqlDataReader rMod = modalidade.consultarModalidade(modalidadeSelected);
+                while (rMod.Read())
+                {
+                    idModalidadeBusca = int.Parse(rMod["idEstudio_Modalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
 
-            Turma turma = new Turma();
-            MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
-            while (rDia.Read())
-            {
-                idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
+                Turma turma = new Turma();
+                MySqlDataReader rDia = turma.consultarTurmaIdDiaHora(idModalidadeBusca, horarioSelected, horaSelected);
+                while (rDia.Read())
+                {
+                    idTurma = int.Parse(rDia["idEstudio_Turma"].ToString());
+                }
+                DAO_Conexao.con.Close();
+                
             }
-            DAO_Conexao.con.Close();
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
             return idTurma;
         }
 
@@ -160,8 +174,19 @@ namespace Estudio
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
-            dadosTela();
-            btnExcluir.Visible = true;
+            try
+            {
+                dadosTela();
+                btnExcluir.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
         }
     }
 }
