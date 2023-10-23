@@ -15,20 +15,30 @@ namespace Estudio
         {
             InitializeComponent();
             Modalidade modalidade1 = new Modalidade();
-            MySqlDataReader x = modalidade1.ConsultarTodasModalidades();
-            while (x.Read())
-            {
-                comboBox1.Items.Add(x["descricaoModalidade"].ToString());
-            }
-            DAO_Conexao.con.Close();
+            
             this.att = att;
             if (!att)
             {
+                MySqlDataReader x = modalidade1.ConsultarTodasModalidadesAtivas();
+                while (x.Read())
+                {
+                    comboBox1.Items.Add(x["descricaoModalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
                 btnAtualizar.Visible = false;
                 txtAluno.Enabled = false;
                 txtAulas.Enabled = false;
                 txtPreco.Enabled = false;
                 checkBox1.Enabled = false;
+            }
+            else if(att)
+            {
+                MySqlDataReader x = modalidade1.ConsultarTodasModalidades();
+                while (x.Read())
+                {
+                    comboBox1.Items.Add(x["descricaoModalidade"].ToString());
+                }
+                DAO_Conexao.con.Close();
             }
         }
 
@@ -48,31 +58,28 @@ namespace Estudio
                         int alunos = int.Parse(txtAluno.Text);
                         int aulas = int.Parse(txtAulas.Text);
                         string descricaoAtt = comboBox1.Text;
-                        if (!Modalidade.verificaExistencia(descricaoAtt))
-                        {
-                            int del;
-                            if (checkBox1.Checked)
-                            {
-                                del = 1;
-                            }
-                            else
-                            {
-                                del = 0;
-                            }
-                            Modalidade m = new Modalidade(descricaoAtt, preco, alunos, aulas, del, codigoId);
-                            if (m.atualizaModalidade())
-                            {
-                                MessageBox.Show("Atualizado com Sucesso");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Erro ao atualizar");
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("Esta descrição já existe");
-                        }
+                        
+                            
+                                int del;
+                                if (checkBox1.Checked)
+                                {
+                                    del = 1;
+                                }
+                                else
+                                {
+                                    del = 0;
+                                }
+                                Modalidade m = new Modalidade(descricaoAtt, preco, alunos, aulas, del, codigoId);
+                                if (m.atualizaModalidade())
+                                {
+                                    MessageBox.Show("Atualizado com Sucesso");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Erro ao atualizar");
+                                }
+                           
+                        
                     }
                     catch (Exception ex)
                     {
