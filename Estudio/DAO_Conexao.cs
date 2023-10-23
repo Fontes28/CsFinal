@@ -27,8 +27,8 @@ namespace Estudio
         public static Boolean Form2Login(String usuario, String senha, int tipo)
         {
             bool cad = false;
-            if (DAO_Conexao.verificaLogin(usuario) == false)
-            {
+            
+                
                 try
                 {
                     con.Open();
@@ -44,7 +44,7 @@ namespace Estudio
                 {
                     con.Close();
                 }
-            }
+            
            
             return cad;
         }
@@ -90,28 +90,32 @@ namespace Estudio
             return tipo;
         }
 
-        public static Boolean verificaLogin(string user)
+        /*public static Boolean verificaLogin(string user)
         {
-            bool existe = false;
+            MySqlCommand consulta01 = null;
+            MySqlDataReader resultado = null;
+
             try
             {
-                int xy;
-                MySqlCommand insere2 = new MySqlCommand("select usuario from Estudio_Login where usuario=" + user + ";", con);
-                xy = insere2.ExecuteNonQuery();
-                if (xy != 0)
+                con.Open();
+                consulta01 = new MySqlCommand("SELECT * FROM Estudio_Login WHERE usuario='" + user + "'", con);
+                resultado = consulta01.ExecuteReader();
+                if (resultado.Read())
+                    return false;
+                else
                 {
-                    existe = true;
+                    return true;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro ao verificar existencia de Login");
+                Console.WriteLine(ex.ToString());
             }
+
             finally
             {
-                con.Close();
             }
-            return existe;
-        }
+            return true;
+        }*/
     }
 }

@@ -48,24 +48,30 @@ namespace Estudio
                         int alunos = int.Parse(txtAluno.Text);
                         int aulas = int.Parse(txtAulas.Text);
                         string descricaoAtt = comboBox1.Text;
-
-                        int del;
-                        if (checkBox1.Checked)
+                        if (!Modalidade.verificaExistencia(descricaoAtt))
                         {
-                            del = 1;
+                            int del;
+                            if (checkBox1.Checked)
+                            {
+                                del = 1;
+                            }
+                            else
+                            {
+                                del = 0;
+                            }
+                            Modalidade m = new Modalidade(descricaoAtt, preco, alunos, aulas, del, codigoId);
+                            if (m.atualizaModalidade())
+                            {
+                                MessageBox.Show("Atualizado com Sucesso");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Erro ao atualizar");
+                            }
                         }
                         else
                         {
-                            del = 0;
-                        }
-                        Modalidade m = new Modalidade(descricaoAtt, preco, alunos, aulas, del, codigoId);
-                        if (m.atualizaModalidade())
-                        {
-                            MessageBox.Show("Atualizado com Sucesso");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Erro ao atualizar");
+                            MessageBox.Show("Esta descrição já existe");
                         }
                     }
                     catch (Exception ex)

@@ -15,25 +15,32 @@ namespace Estudio
             try
             {
                 String descricao = txtDescricao.Text;
-                float preco = float.Parse(txtPreco.Text);
-                int qtdeAluno = int.Parse(txtAluno.Text);
-                int qtdeAula = int.Parse(txtAula.Text);
-
-                Modalidade m = new Modalidade(descricao, preco, qtdeAluno, qtdeAula);
-
-                if (m.cadastrarModalidade())
-
+                if (!Modalidade.verificaExistencia(descricao))
                 {
-                    MessageBox.Show("Cadastro realizado");
+                    float preco = float.Parse(txtPreco.Text);
+                    int qtdeAluno = int.Parse(txtAluno.Text);
+                    int qtdeAula = int.Parse(txtAula.Text);
+
+                    Modalidade m = new Modalidade(descricao, preco, qtdeAluno, qtdeAula);
+
+                    if (m.cadastrarModalidade())
+
+                    {
+                        MessageBox.Show("Cadastro realizado");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro no cadastro");
+                    }
+                    txtPreco.Text = "";
+                    txtDescricao.Text = "";
+                    txtAula.Text = "";
+                    txtAluno.Text = "";
                 }
                 else
                 {
-                    MessageBox.Show("Erro no cadastro");
+                    MessageBox.Show("A descição já existe!");
                 }
-                txtPreco.Text = "";
-                txtDescricao.Text = "";
-                txtAula.Text = "";
-                txtAluno.Text = "";
             }
             catch (Exception ex)
             {

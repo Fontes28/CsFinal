@@ -36,7 +36,7 @@ namespace Estudio
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Já existe um login com este nome");
+                Console.WriteLine(ex.ToString());
             }
         }
     }

@@ -208,5 +208,36 @@ namespace Estudio
             }
             return exc;
         }
+
+        public static Boolean verificaExistencia(string consultar)
+        {
+            MySqlCommand consultaTodos = null;
+            MySqlDataReader resultadoTodos = null;
+            Boolean existe = true;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+                consultaTodos = new MySqlCommand("SELECT * FROM Estudio_Modalidade where descricaoModalidade = '" + consultar + "'", DAO_Conexao.con);
+                resultadoTodos = consultaTodos.ExecuteReader();
+                if (resultadoTodos.Read())
+                {
+                    existe = true;
+                }
+                else
+                {
+                    existe = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            finally
+            {
+            }
+            return existe;
+        }
     }
 }
