@@ -46,16 +46,16 @@ namespace Estudio
             this.cadastrarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.excluirToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.consultarAtualizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.matruculaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cadastrarToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.excluirToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.consultarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.matruculaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cadastrarToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.excluirToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.consultarToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -196,6 +196,38 @@ namespace Estudio
             this.consultarAtualizarToolStripMenuItem.Text = "Consultar/Atualizar";
             this.consultarAtualizarToolStripMenuItem.Click += new System.EventHandler(this.consultarAtualizarToolStripMenuItem_Click);
             // 
+            // matruculaToolStripMenuItem
+            // 
+            this.matruculaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cadastrarToolStripMenuItem2,
+            this.excluirToolStripMenuItem2,
+            this.consultarToolStripMenuItem1});
+            this.matruculaToolStripMenuItem.Name = "matruculaToolStripMenuItem";
+            this.matruculaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.matruculaToolStripMenuItem.Text = "Matricula";
+            this.matruculaToolStripMenuItem.Click += new System.EventHandler(this.matruculaToolStripMenuItem_Click);
+            // 
+            // cadastrarToolStripMenuItem2
+            // 
+            this.cadastrarToolStripMenuItem2.Name = "cadastrarToolStripMenuItem2";
+            this.cadastrarToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.cadastrarToolStripMenuItem2.Text = "Cadastrar";
+            this.cadastrarToolStripMenuItem2.Click += new System.EventHandler(this.cadastrarToolStripMenuItem2_Click);
+            // 
+            // excluirToolStripMenuItem2
+            // 
+            this.excluirToolStripMenuItem2.Name = "excluirToolStripMenuItem2";
+            this.excluirToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.excluirToolStripMenuItem2.Text = "Excluir";
+            this.excluirToolStripMenuItem2.Click += new System.EventHandler(this.excluirToolStripMenuItem2_Click);
+            // 
+            // consultarToolStripMenuItem1
+            // 
+            this.consultarToolStripMenuItem1.Name = "consultarToolStripMenuItem1";
+            this.consultarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.consultarToolStripMenuItem1.Text = "Consultar";
+            this.consultarToolStripMenuItem1.Click += new System.EventHandler(this.consultarToolStripMenuItem1_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.button1);
@@ -254,37 +286,6 @@ namespace Estudio
             this.label1.Size = new System.Drawing.Size(33, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Login";
-            // 
-            // matruculaToolStripMenuItem
-            // 
-            this.matruculaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cadastrarToolStripMenuItem2,
-            this.excluirToolStripMenuItem2,
-            this.consultarToolStripMenuItem1});
-            this.matruculaToolStripMenuItem.Name = "matruculaToolStripMenuItem";
-            this.matruculaToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.matruculaToolStripMenuItem.Text = "Matrucula";
-            // 
-            // cadastrarToolStripMenuItem2
-            // 
-            this.cadastrarToolStripMenuItem2.Name = "cadastrarToolStripMenuItem2";
-            this.cadastrarToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.cadastrarToolStripMenuItem2.Text = "Cadastrar";
-            this.cadastrarToolStripMenuItem2.Click += new System.EventHandler(this.cadastrarToolStripMenuItem2_Click);
-            // 
-            // excluirToolStripMenuItem2
-            // 
-            this.excluirToolStripMenuItem2.Name = "excluirToolStripMenuItem2";
-            this.excluirToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-            this.excluirToolStripMenuItem2.Text = "Excluir";
-            this.excluirToolStripMenuItem2.Click += new System.EventHandler(this.excluirToolStripMenuItem2_Click);
-            // 
-            // consultarToolStripMenuItem1
-            // 
-            this.consultarToolStripMenuItem1.Name = "consultarToolStripMenuItem1";
-            this.consultarToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.consultarToolStripMenuItem1.Text = "Consultar";
-            this.consultarToolStripMenuItem1.Click += new System.EventHandler(this.consultarToolStripMenuItem1_Click);
             // 
             // Form1
             // 

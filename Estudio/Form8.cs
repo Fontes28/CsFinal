@@ -120,5 +120,10 @@ namespace Estudio
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -147,7 +147,7 @@ namespace Estudio
 
         private void excluirToolStripMenuItem2_Click(object sender, EventArgs e)
         {
-            FormExcluir frm = new FormExcluir();
+            Form9 frm = new Form9();
             frm.MdiParent = this;
             frm.Show();
         }
@@ -157,6 +157,11 @@ namespace Estudio
             ConsultarMatricula frm = new ConsultarMatricula();
             frm.MdiParent = this;
             frm.Show();
+        }
+
+        private void matruculaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
