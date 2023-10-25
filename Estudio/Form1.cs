@@ -136,5 +136,27 @@ namespace Estudio
             frm.MdiParent = this;
             frm.Show();
         }
+
+        private void cadastrarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            CadastroMatricula frm = new CadastroMatricula();
+            frm.MdiParent = this;
+            frm.Show();
+
+        }
+
+        private void excluirToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FormExcluir frm = new FormExcluir();
+            frm.MdiParent = this;
+            frm.Show();
+        }
+
+        private void consultarToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ConsultarMatricula frm = new ConsultarMatricula();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }
