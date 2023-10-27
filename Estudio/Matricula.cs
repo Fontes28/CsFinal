@@ -1,15 +1,10 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Estudio
 {
-    class Matricula
+    internal class Matricula
     {
-
         public Matricula()
         {
         }
@@ -36,6 +31,26 @@ namespace Estudio
             return cad;
         }
 
+        public MySqlDataReader consultarAlunos(int idTurma)
+        {
+            MySqlCommand consultaTodos = null;
+            MySqlDataReader resultadoTodos = null;
 
+            try
+            {
+                DAO_Conexao.con.Open();
+                consultaTodos = new MySqlCommand("SELECT * FROM Estudio_Matricula where id_Turma='" + idTurma + "'", DAO_Conexao.con);
+                resultadoTodos = consultaTodos.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            finally
+            {
+            }
+            return resultadoTodos;
+        }
     }
 }

@@ -19,6 +19,10 @@ namespace Estudio
         private byte[] Foto;
         private int Ativo;
 
+        public Aluno()
+        {
+
+        }
         public Aluno(String CPF, String nome, String rua,
             String numero, String bairro, String complemento,
             String CEP, String cidade, String estado,
@@ -37,6 +41,7 @@ namespace Estudio
             setEmail(email);
             setFoto(foto);
         }
+        
 
         public Aluno(String CPF, String nome, String rua,
            String numero, String bairro, String complemento,
@@ -265,6 +270,27 @@ namespace Estudio
             try
             {
                 DAO_Conexao.con.Open();
+                consulta01 = new MySqlCommand("SELECT * FROM Estudio_Aluno WHERE CPFALuno='" + CPF + "'", DAO_Conexao.con);
+                resultado = consulta01.ExecuteReader();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            finally
+            {
+            }
+            return resultado;
+        }
+        public MySqlDataReader consultarAluno01Extra()
+        {
+            MySqlCommand consulta01 = null;
+            MySqlDataReader resultado = null;
+
+            try
+            {
+                
                 consulta01 = new MySqlCommand("SELECT * FROM Estudio_Aluno WHERE CPFALuno='" + CPF + "'", DAO_Conexao.con);
                 resultado = consulta01.ExecuteReader();
             }
