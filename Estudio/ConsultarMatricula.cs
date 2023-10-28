@@ -10,16 +10,20 @@ namespace Estudio
         private string nomeModalidade;
         private string nomeTurma;
         private String[] resultado;
+        private string nomeLista;
         private string modalidadeSelected;
         private string horarioSelected;
         private int idModalidadeBusca;
         private string horaSelected;
         private int idTurma;
         private String nomeAluno;
+        private string CPFAluno;
+        private int contador = 1;
 
-        public ConsultarMatricula()
+        public ConsultarMatricula(int id)
         {
             InitializeComponent();
+
             try
             {
                 Modalidade m = new Modalidade();
@@ -29,6 +33,16 @@ namespace Estudio
                     comboBox1.Items.Add(r["descricaoModalidade"].ToString());
                 }
                 DAO_Conexao.con.Close();
+                btnExcluir.Visible = false;
+                textBox1.Enabled = false;
+                if(id==1)
+                {
+                    btnExcluir.Visible = true;
+                    this.Text = "Excluir";
+                    textBox1.Visible = false;
+                    label2.Visible = false;
+
+                }
             }
             catch (Exception ex)
             {
@@ -72,21 +86,16 @@ namespace Estudio
             {
                 Matricula matricula = new Matricula();
                 Aluno a = new Aluno();
-                MySqlDataReader reader2;
-                MySqlDataReader mySqlDataReader = matricula.consultarAlunos(obterIdTurma());
-                /*listBox1.Items.Clear();
-                listBox2.Items.Clear();*/
-                while (mySqlDataReader.Read())
+
+                MySqlDataReader reader = matricula.consultarInnerJoin(obterIdTurma());
+
+                while (reader.Read())
                 {
-                    a.setCPF(mySqlDataReader["cpf_Aluno"].ToString());
-                    reader2 = a.consultarAluno01Extra();
-                    while (reader2.Read())
-                    {
-                        nomeAluno = reader2["nomeAluno"].ToString();
-                    }
-                    listBox1.Items.Add(nomeAluno);
+                    nomeLista = reader["nomeAluno"].ToString() + "-" + reader["CPFAluno"].ToString();
+                    listBox1.Items.Add(nomeLista);
                 }
                 DAO_Conexao.con.Close();
+                textBox1.Text = (listBox1.Items.Count).ToString();
             }
             catch (Exception ex)
             {
@@ -128,6 +137,41 @@ namespace Estudio
                 Console.WriteLine(ex.Message);
             }
             return idTurma;
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Matricula matricula = new Matricula();
+                if (matricula.excluirAlunoMatricula(obterCPFAluno()))
+                {
+                    MessageBox.Show("Excluido Com Sucesso!");
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao Excluir");
+                }
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        private string obterCPFAluno()
+        {
+            try
+            {
+                resultado = (listBox1.SelectedItem.ToString()).Split('-');
+                nomeAluno = resultado[0];
+                CPFAluno = resultado[1];
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return CPFAluno;
         }
     }
 }

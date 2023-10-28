@@ -30,13 +30,14 @@ namespace Estudio
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listBox2 = new System.Windows.Forms.ListBox();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.btnExcluir = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -55,6 +56,15 @@ namespace Estudio
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Turma:";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // listBox2
+            // 
+            this.listBox2.FormattingEnabled = true;
+            this.listBox2.Location = new System.Drawing.Point(23, 108);
+            this.listBox2.Name = "listBox2";
+            this.listBox2.Size = new System.Drawing.Size(225, 160);
+            this.listBox2.TabIndex = 6;
+            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -108,20 +118,22 @@ namespace Estudio
             this.listBox1.Size = new System.Drawing.Size(247, 238);
             this.listBox1.TabIndex = 0;
             // 
-            // listBox2
+            // btnExcluir
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(23, 108);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(225, 160);
-            this.listBox2.TabIndex = 6;
-            this.listBox2.SelectedIndexChanged += new System.EventHandler(this.listBox2_SelectedIndexChanged);
+            this.btnExcluir.Location = new System.Drawing.Point(421, 378);
+            this.btnExcluir.Name = "btnExcluir";
+            this.btnExcluir.Size = new System.Drawing.Size(304, 59);
+            this.btnExcluir.TabIndex = 2;
+            this.btnExcluir.Text = "Excluir";
+            this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // ConsultarMatricula
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnExcluir);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "ConsultarMatricula";
@@ -143,5 +155,6 @@ namespace Estudio
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.Button btnExcluir;
     }
 }
