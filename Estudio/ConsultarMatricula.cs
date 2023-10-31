@@ -97,6 +97,7 @@ namespace Estudio
                         listBox1.Items.Add(nomeLista);
                     }
                     DAO_Conexao.con.Close();
+                textBox1.Text = matricula.contarAlunos(obterIdTurma()).ToString();
                 }
                
             catch (Exception ex)
