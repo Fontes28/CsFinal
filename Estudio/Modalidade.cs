@@ -96,6 +96,34 @@ namespace Estudio
             return resultado;
         }
 
+        public int qtdeAlunosViaID(int idModalidade)
+        {
+            int quantidade=0;
+            MySqlCommand consulta = null;
+            MySqlDataReader resultado = null;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+                consulta = new MySqlCommand("SELECT qtdeAlunos FROM Estudio_Modalidade WHERE idEstudio_Modalidade='" + idModalidade + "'", DAO_Conexao.con);
+                resultado = consulta.ExecuteReader();
+                while(resultado.Read())
+                {
+                    quantidade = int.Parse(resultado["qtdeAlunos"].ToString());
+                }
+                DAO_Conexao.con.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            finally
+            {
+            }
+            return quantidade;
+        }
+
         public bool consultarBoolean()
         {
             bool existe = false;

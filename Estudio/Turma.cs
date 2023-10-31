@@ -8,6 +8,7 @@ namespace Estudio
     {
         private string professor, dia_semana, hora;
         private int modalidade, qtde_Alunos, id, del;
+        private int qtdeMax = 0;
 
         public Turma(int modalidade)
         {
@@ -73,6 +74,7 @@ namespace Estudio
         public int Modalidade { get => modalidade; set => modalidade = value; }
         public int Qtde_Alunos { get => qtde_Alunos; set => qtde_Alunos = value; }
         public int Id { get => id; set => id = value; }
+        public int QtdeMax { get => qtdeMax; set => qtdeMax = value; }
 
         public bool cadastar()
         {
@@ -94,6 +96,19 @@ namespace Estudio
                 DAO_Conexao.con.Close();
             }
             return cad;
+        }
+
+        public void setQtdeMax(int mde)
+        {
+            try
+            {
+                Modalidade m = new Modalidade();
+                qtdeMax = m.qtdeAlunosViaID(mde);
+            }
+             catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         public bool consultarBoolean()

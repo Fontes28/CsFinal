@@ -35,13 +35,12 @@ namespace Estudio
                 DAO_Conexao.con.Close();
                 btnExcluir.Visible = false;
                 textBox1.Enabled = false;
-                if(id==1)
+                if (id == 1)
                 {
                     btnExcluir.Visible = true;
                     this.Text = "Excluir";
                     textBox1.Visible = false;
                     label2.Visible = false;
-
                 }
             }
             catch (Exception ex)
@@ -85,18 +84,21 @@ namespace Estudio
             try
             {
                 Matricula matricula = new Matricula();
-                Aluno a = new Aluno();
+                Turma t = new Turma();
+                t.setQtdeMax(index);
+                
+                    Aluno a = new Aluno();
 
-                MySqlDataReader reader = matricula.consultarInnerJoin(obterIdTurma());
+                    MySqlDataReader reader = matricula.consultarInnerJoin(obterIdTurma());
 
-                while (reader.Read())
-                {
-                    nomeLista = reader["nomeAluno"].ToString() + "-" + reader["CPFAluno"].ToString();
-                    listBox1.Items.Add(nomeLista);
+                    while (reader.Read())
+                    {
+                        nomeLista = reader["nomeAluno"].ToString() + "-" + reader["CPFAluno"].ToString();
+                        listBox1.Items.Add(nomeLista);
+                    }
+                    DAO_Conexao.con.Close();
                 }
-                DAO_Conexao.con.Close();
-                textBox1.Text = (matricula.contarAlunos(obterIdTurma())).ToString();
-            }
+               
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
@@ -153,7 +155,7 @@ namespace Estudio
                     MessageBox.Show("Erro ao Excluir");
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
