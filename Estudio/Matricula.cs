@@ -79,6 +79,34 @@ namespace Estudio
             }
             return resultadoTodos;
         }
+        public int contarAlunos(int idTurma)
+        {
+            MySqlCommand consultaTodos = null;
+            MySqlDataReader resultadoTodos = null;
+            int qtd=0;
+
+            try
+            {
+                DAO_Conexao.con.Open();
+                consultaTodos = new MySqlCommand("select count(cpf_Aluno) from Estudio_Matricula where id_Turma='" + idTurma + "'", DAO_Conexao.con);
+                resultadoTodos = consultaTodos.ExecuteReader();
+                while(resultadoTodos.Read())
+                {
+                    qtd = int.Parse(resultadoTodos["count(cpf_Aluno)"].ToString());
+                }
+                DAO_Conexao.con.Close();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+
+            finally
+            {
+            }
+            return qtd;
+        }
         public bool excluirAlunoMatricula(string cpf)
         {
             bool exc = false;
