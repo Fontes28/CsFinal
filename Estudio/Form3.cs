@@ -23,11 +23,12 @@ namespace Estudio
 
         private void maskedTextBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-           Aluno aluno = new Aluno(maskedTextBox1.Text);
-            
+            Aluno aluno = new Aluno(maskedTextBox1.Text);
+
             if (e.KeyChar == 13)
-            { aluno.verificaCPF();
-            MessageBox.Show(maskedTextBox1.Text);
+            {
+                aluno.verificaCPF();
+                MessageBox.Show(maskedTextBox1.Text);
                 if (aluno.consultarAluno())
                 {
                     MessageBox.Show("Aluno já cadastrado");
@@ -82,13 +83,20 @@ namespace Estudio
             Aluno aluno = new Aluno(maskedTextBox1.Text, textBox1.Text, textBox2.Text, textBox5.Text, textBox3.Text, textBox6.Text, maskedTextBox2.Text, textBox4.Text, textBox7.Text, maskedTextBox3.Text, textBox8.Text);
             if (aluno.verificaCPF())
             {
-                if (aluno.cadastrarAluno())
+                if (aluno.consultarAluno() == false)
                 {
-                    MessageBox.Show("Cadastro realizado");
+                    if (aluno.cadastrarAluno())
+                    {
+                        MessageBox.Show("Cadastro realizado");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro no cadastro");
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Erro no cadastro");
+                    MessageBox.Show("Este CPF já existe no banco de dados!");
                 }
             }
             else
