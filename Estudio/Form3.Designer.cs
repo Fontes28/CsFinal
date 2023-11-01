@@ -57,6 +57,7 @@ namespace Estudio
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -308,6 +309,7 @@ namespace Estudio
             this.pictureBox1.Location = new System.Drawing.Point(615, 24);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(173, 270);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
@@ -319,6 +321,11 @@ namespace Estudio
             this.button1.TabIndex = 2;
             this.button1.Text = "Ecolher Foto";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // Form3
             // 
@@ -367,5 +374,6 @@ namespace Estudio
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
