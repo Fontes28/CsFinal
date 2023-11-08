@@ -25,7 +25,7 @@ namespace Estudio
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tipo = DAO_Conexao.login("davi", "202236");
+            tipo = DAO_Conexao.login(textBox1.Text,textBox2.Text);
             if (tipo == 0)
             {
                 MessageBox.Show("Usuário ou senha invalidos");

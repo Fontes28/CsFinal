@@ -150,6 +150,7 @@ namespace Estudio
                 if (matricula.excluirAlunoMatricula(obterCPFAluno()))
                 {
                     MessageBox.Show("Excluido Com Sucesso!");
+                    listBox1.Items.RemoveAt(listBox1.SelectedIndex);
                 }
                 else
                 {

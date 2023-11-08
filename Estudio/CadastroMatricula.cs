@@ -37,42 +37,54 @@ namespace Estudio
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string cpf = maskedTextBox1.Text;
-            cpf = cpf.Trim();
-            cpf = cpf.Replace(".", "");
-            cpf = cpf.Replace("-", "");
-            Aluno al = new Aluno(cpf);
-            if (al.consultarAluno() == true)
+            try
             {
-                int id = obterIdTurma();
-                Matricula m = new Matricula();
-                Turma t = new Turma();
-                t.setQtdeMax(index);
-                if (m.contarAlunos(obterIdTurma()) < t.QtdeMax)
+                string cpf = maskedTextBox1.Text;
+                cpf = cpf.Trim();
+                cpf = cpf.Replace(".", "");
+                cpf = cpf.Replace("-", "");
+                Aluno al = new Aluno(cpf);
+                if (al.consultarAluno() == true)
                 {
-                    Aluno a = new Aluno(cpf);
-
-                    if (a.verificaCPF())
+                    int id = obterIdTurma();
+                    Matricula m = new Matricula();
+                    Turma t = new Turma();
+                    t.setQtdeMax(index);
+                    if (m.contarAlunos(obterIdTurma()) < t.QtdeMax)
                     {
-                        cpf = a.getCPF();
+                        Aluno a = new Aluno(cpf);
 
-                        if (m.cadastrar(id, cpf))
+                        if (a.verificaCPF())
                         {
-                            MessageBox.Show("Cadastro realizado");
+                            cpf = a.getCPF();
+
+                            if (m.cadastrar(id, cpf))
+                            {
+                                MessageBox.Show("Cadastro realizado");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Erro no cadastro");
+                            }
                         }
-                        else
-                        {
-                            MessageBox.Show("Erro no cadastro");
-                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não é possível mais cadastrar alunos nesta turma");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Não é possível mais cadastrar alunos nesta turma");
+                    MessageBox.Show("Este CPF não existe no banco de dados");
                 }
             }
-            else{
-                MessageBox.Show("Este CPF não existe no banco de dados");
+            catch(Exception ex)
+            {
+                MessageBox.Show("Erro");
+            }
+            finally
+            {
+                maskedTextBox1.Text = "";
             }
         }
 
